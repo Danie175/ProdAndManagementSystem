@@ -1,0 +1,222 @@
+﻿<Page x:Class="ProdAndManagementSystem.Views.SiteManagement"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProdAndManagementSystem.Views"
+        mc:Ignorable="d"
+        Title="Site Management" Height="650" Width="1100"
+        Background="#f9f9f9">
+
+    <Page.Resources>
+        <!-- Windows 11 inspired styles -->
+        <Style x:Key="Win11Button" TargetType="Button">
+            <Setter Property="Background" Value="#f0f0f0"/>
+            <Setter Property="Foreground" Value="#202020"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="4" 
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#e0e0e0"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#d0d0d0"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="Win11PrimaryButton" TargetType="Button" BasedOn="{StaticResource Win11Button}">
+            <Setter Property="Background" Value="#0078d4"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#106ebe"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#005a9e"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="Win11TextBox" TargetType="TextBox">
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#d1d1d1"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Margin" Value="0,5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border BorderThickness="{TemplateBinding BorderThickness}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                Background="{TemplateBinding Background}" 
+                                CornerRadius="4">
+                            <ScrollViewer x:Name="PART_ContentHost" Padding="{TemplateBinding Padding}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#0078d4"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="Win11DataGrid" TargetType="DataGrid">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#e0e0e0"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="AlternatingRowBackground" Value="#f9f9f9"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#f0f0f0"/>
+            <Setter Property="VerticalGridLinesBrush" Value="#f0f0f0"/>
+            <Setter Property="RowHeaderWidth" Value="0"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="CanUserDeleteRows" Value="False"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="SelectionUnit" Value="FullRow"/>
+        </Style>
+
+        <Style x:Key="Win11GroupBox" TargetType="GroupBox">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#e0e0e0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="GroupBox">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0" 
+                                    Background="{TemplateBinding Background}" 
+                                    BorderBrush="Transparent"
+                                    BorderThickness="0">
+                                <ContentPresenter ContentSource="Header" 
+                                                RecognizesAccessKey="True" 
+                                                Margin="4,0,0,0"/>
+                            </Border>
+                            <Border Grid.Row="1" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" 
+                                    BorderBrush="Black" 
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="4">
+                                <ContentPresenter Margin="{TemplateBinding Padding}"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid Margin="6,25,185,15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,15">
+            <TextBlock Text="Site Management" FontSize="24" FontWeight="SemiBold" Foreground="#202020"/>
+            <TextBlock Text="Add, edit, and manage site information" FontSize="14" Foreground="#505050" Margin="0,5,0,0"/>
+            <Separator Margin="0,15,0,0" Background="#e0e0e0"/>
+        </StackPanel>
+
+        <!-- Customer Input Form -->
+        <GroupBox Grid.Row="1" Header="Site Information" Style="{StaticResource Win11GroupBox}">
+            <Grid Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Left Column -->
+                <StackPanel Grid.Column="0" Grid.Row="0" Margin="5,0,15,0">
+                    <TextBlock Text="Site ID" FontSize="13" Margin="0,5,0,2"/>
+                    <TextBox x:Name="txtSiteId" Style="{StaticResource Win11TextBox}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="0" Grid.Row="1" Margin="5,0,15,0">
+                    <TextBlock Text="Site Address" FontSize="13" Margin="0,5,0,2"/>
+                    <TextBox x:Name="txtAddressSite" Style="{StaticResource Win11TextBox}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="0" Grid.Row="2" Margin="5,0,15,0">
+                    <TextBlock Text="Site Number" FontSize="13" Margin="0,5,0,2"/>
+                    <TextBox x:Name="txtNumberSite" Style="{StaticResource Win11TextBox}"/>
+                </StackPanel>
+
+                <!-- Action Buttons -->
+                <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" 
+                          Orientation="Horizontal" HorizontalAlignment="Left" Margin="5,15,0,10">
+                    <Button x:Name="SitebtnSave" Content="Save" Style="{StaticResource Win11PrimaryButton}" Width="100" Click="btnSave_Click"/>
+                    <Button x:Name="SitebtnDelete" Content="Delete" Style="{StaticResource Win11Button}" Width="100" Click="btnDelete_Click"/>
+                    <Button x:Name="SitebtnClear" Content="Clear" Style="{StaticResource Win11Button}" Width="100" Click="btnClear_Click"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+
+        <!-- Customer Data Grid -->
+        <Grid Grid.Row="2" Margin="0,10,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Search Box -->
+            <Grid Grid.Row="0" Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="txtSiteSearch" Grid.Column="0" Style="{StaticResource Win11TextBox}" 
+                          Margin="5,0" TextChanged="txtSiteSearch_TextChanged"/>
+                <Button x:Name="btnSearch" Grid.Column="1" Content="Search" 
+                        Style="{StaticResource Win11Button}" Width="100" Margin="5,0" Click="btnSiteSearch_Click"/>
+            </Grid>
+
+            <!-- Customer List -->
+            <DataGrid x:Name="dgSite" Grid.Row="1" Style="{StaticResource Win11DataGrid}" Margin="5,0" SelectionChanged="dgSite_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Site ID" Binding="{Binding Siteid}" Width="70"/>
+                    <DataGridTextColumn Header="Site Name" Binding="{Binding Sitename}" Width="200"/>
+                    <DataGridTextColumn Header="Site Number" Binding="{Binding Sitenumber}" Width="120"/>
+                    <DataGridTextColumn Header="Site Address" Binding="{Binding Siteadd}" Width="250"/>
+                    <DataGridTextColumn Header="Created Date" Binding="{Binding Createdate, StringFormat={}{0:dd/MM/yyyy}}" Width="110"/>
+                    <DataGridTextColumn Header="Updated Date" Binding="{Binding Updatedate, StringFormat={}{0:dd/MM/yyyy}}" Width="110"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+
+</Page>
