@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MaterialDesignThemes.Wpf.Internal;
 using ProdAndManagementSystem.Data;
 using ProdAndManagementSystem.Views;
 namespace ProdAndManagementSystem
@@ -28,7 +29,10 @@ namespace ProdAndManagementSystem
         }
         private void ContentFrame_Navigated(object sender, NavigationEventArgs e)
         {
-        
+            if (e.Content != null)
+            {
+                DefaultDashboard.Visibility = Visibility.Collapsed;
+            }
         }
         private void btnOrder_Click(object sender, RoutedEventArgs e)
         {
@@ -66,7 +70,12 @@ namespace ProdAndManagementSystem
 
         private void btnDashboard_Click(object sender, RoutedEventArgs e)
         {
+            ContentFrame.Content = null;
+            // Show the dashboard
+            DefaultDashboard.Visibility = Visibility.Visible;
 
+            // Force WPF to immediately update the layout/render cycle
+            Application.Current.Dispatcher.Invoke(() => { }, System.Windows.Threading.DispatcherPriority.Render);
         }
     }
 }

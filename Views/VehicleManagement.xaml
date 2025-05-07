@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProdAndManagementSystem.Views"
         mc:Ignorable="d"
-        Title="Vehicle Management" Height="650" Width="1100"
-        Background="#f9f9f9">
+        Title="Vehicle Management"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        Background="White">
 
     <Page.Resources>
         <!-- Windows 11 inspired styles -->
@@ -181,7 +183,7 @@
                 <StackPanel Grid.Column="2" Grid.Row="0" Margin="6,0,5,15">
                     <TextBlock FontSize="13" Margin="0,5,0,2"><Run Language="en-in" Text="Vehicle Number"/></TextBlock>
                     <TextBox x:Name="txtvehnum" Style="{StaticResource Win11TextBox}" 
-                             TextWrapping="Wrap" Height="31" AcceptsReturn="True" Width="421"/>
+                             TextWrapping="Wrap" Height="31" AcceptsReturn="True" Width="604"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="2" Margin="4,80,5,66" Grid.RowSpan="3">
@@ -198,7 +200,7 @@
                 </StackPanel>
             </Grid>
         </GroupBox>
-        <DataGrid x:Name="dgTransport" Grid.Row="2" Style="{StaticResource Win11DataGrid}" Margin="6,5,0,-2" SelectionChanged="dgTransport_SelectionChanged" HorizontalAlignment="Left" Width="895">
+        <DataGrid x:Name="dgTransport" Grid.Row="2" Style="{StaticResource Win11DataGrid}" Margin="6,5,0,-2" SelectionChanged="dgTransport_SelectionChanged" HorizontalAlignment="Left" Width="1203">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Vehicle ID" Binding="{Binding Vehicleid}" Width="70"/>
                 <DataGridTextColumn Header="Vehicle Number" Binding="{Binding Vehiclenumber}" Width="150"/>

@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProdAndManagementSystem.Views"
         mc:Ignorable="d"
-        Title="Customer Management" Height="650" Width="1100"
-        Background="#f9f9f9">
+        Title="Customer Management"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        Background="White">
 
     <Page.Resources>
         <!-- Windows 11 inspired styles -->
@@ -104,7 +106,10 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="GroupBox">
-                        <Grid>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+
+                            <Grid>
+                            
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
@@ -125,6 +130,8 @@
                                 <ContentPresenter Margin="{TemplateBinding Padding}"/>
                             </Border>
                         </Grid>
+                        </ScrollViewer>
+
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -146,7 +153,7 @@
         </StackPanel>
 
         <!-- Customer Input Form -->
-        <GroupBox Grid.Row="1" Header="Customer Information" Style="{StaticResource Win11GroupBox}">
+        <GroupBox Grid.Row="1" Header="Supplier Information" Style="{StaticResource Win11GroupBox}">
             <Grid Margin="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -219,7 +226,6 @@
                 <Button x:Name="SupplierbtnSearch" Grid.Column="1" Content="Search" 
                         Style="{StaticResource Win11Button}" Width="100" Margin="5,0" Click="SupplierbtnSearch_Click"/>
             </Grid>
-
             <!-- Customer List -->
             <DataGrid x:Name="dgSupplier" Grid.Row="1" Style="{StaticResource Win11DataGrid}" Margin="5,0" SelectionChanged="dgSupplier_SelectionChanged">
                 <DataGrid.Columns>
@@ -233,6 +239,7 @@
                     <DataGridTextColumn Header="Updated Date" Binding="{Binding Updatedate, StringFormat={}{0:dd/MM/yyyy}}" Width="110"/>
                 </DataGrid.Columns>
             </DataGrid>
+            
         </Grid>
     </Grid>
 

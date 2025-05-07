@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProdAndManagementSystem.Views"
         mc:Ignorable="d"
-        Title="Recipe Management" Height="750" Width="1100"
+        Title="Recipe Management"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
         Background="#f8f8f8">
 
     <Page.Resources>

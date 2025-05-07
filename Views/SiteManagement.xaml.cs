@@ -15,17 +15,23 @@ namespace ProdAndManagementSystem.Views
 
         public SiteManagement()
         {
-            using JustDbContext context = new JustDbContext();
+            _context = new JustDbContext();
             InitializeComponent();
-            _context = context;
             LoadSites();
+        }
+
+        // Add this method to properly dispose the context when the page is unloaded
+        ~SiteManagement()
+        {
+            _context?.Dispose();
         }
 
         private void LoadSites()
         {
-            dgSite.ItemsSource = _context.Sites.ToList();
+            // Use AsNoTracking to avoid tracking conflicts
+            dgSite.ItemsSource = _context.Sites.AsNoTracking().ToList();
         }
-         
+
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -37,22 +43,28 @@ namespace ProdAndManagementSystem.Views
                 }
 
                 int siteId = int.Parse(txtSiteId.Text);
+
+                if (dgSite.SelectedItem is Site selected && selected.Siteid == siteId)
+                {
+                    _context.Entry(selected).State = EntityState.Detached;
+                }
+
                 var existing = _context.Sites.FirstOrDefault(s => s.Siteid == siteId);
 
-                if (existing != null) 
+                if (existing != null)
                 {
+                    // Update properties without changing entity
                     existing.Siteadd = txtAddressSite.Text;
                     existing.Sitenumber = txtNumberSite.Text;
                     existing.Updatedate = DateTime.Now;
-
-                    _context.Sites.Update(existing);
+                    existing.Sitename = txtSiteName.Text;
                 }
                 else
                 {
                     var site = new Site
                     {
                         Siteid = siteId,
-                        //Sitename = txt,
+                        Sitename = txtSiteName.Text,
                         Siteadd = txtAddressSite.Text,
                         Sitenumber = txtNumberSite.Text,
                         Createdate = DateTime.Now,
@@ -64,6 +76,9 @@ namespace ProdAndManagementSystem.Views
 
                 _context.SaveChanges();
                 MessageBox.Show("Saved successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                // Refresh the data
+                _context.ChangeTracker.Clear(); // Clear tracking
                 LoadSites();
                 ClearForm();
             }
@@ -80,10 +95,25 @@ namespace ProdAndManagementSystem.Views
                 var confirm = MessageBox.Show($"Are you sure to delete Site ID {selected.Siteid}?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (confirm == MessageBoxResult.Yes)
                 {
-                    _context.Sites.Remove(selected);
-                    _context.SaveChanges();
-                    LoadSites();
-                    ClearForm();
+                    try
+                    {
+                        // Find the entity from the context to ensure correct tracking
+                        var siteToDelete = _context.Sites.Find(selected.Siteid);
+                        if (siteToDelete != null)
+                        {
+                            _context.Sites.Remove(siteToDelete);
+                            _context.SaveChanges();
+                        }
+
+                        // Clear tracking after operation
+                        _context.ChangeTracker.Clear();
+                        LoadSites();
+                        ClearForm();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error deleting: {ex.Message}", "Delete Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
             }
             else
@@ -99,6 +129,7 @@ namespace ProdAndManagementSystem.Views
 
         private void ClearForm()
         {
+            txtSiteName.Text = "";
             txtSiteId.Text = "";
             txtAddressSite.Text = "";
             txtNumberSite.Text = "";
@@ -109,26 +140,12 @@ namespace ProdAndManagementSystem.Views
         {
             if (dgSite.SelectedItem is Site site)
             {
+                txtSiteName.Text = site.Sitename;
                 txtSiteId.Text = site.Siteid.ToString();
                 txtAddressSite.Text = site.Siteadd;
                 txtNumberSite.Text = site.Sitenumber;
             }
         }
-
-        //private void btnSiteSearch_Click(object sender, RoutedEventArgs e)
-        //{
-        //    string keyword = txtSiteSearch.Text.Trim().ToLower();
-
-        //    var filtered = _context.Sites
-        //        .Where(s => s.Siteid.ToString().Contains(keyword)
-        //                 || s.Sitenumber.ToLower().Contains(keyword)
-        //                 || s.Siteadd.ToLower().Contains(keyword)
-        //                 || s.Sitename.ToLower().Contains(keyword))
-        //        .OrderByDescending(s => s.Updatedate ?? s.Createdate)
-        //        .ToList();
-
-        //    dgSite.ItemsSource = filtered;
-        //}
 
         private void txtSiteSearch_TextChanged(object sender, TextChangedEventArgs e)
         {

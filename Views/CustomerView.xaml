@@ -5,13 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProdAndManagementSystem.Views"
         mc:Ignorable="d"
-        Title="Customer Management" Height="650" Width="1100"
-        Background="#f9f9f9">
+        Title="Customer Management" 
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        Background="White">
 
     <Page.Resources>
         <!-- Windows 11 inspired styles -->
         <Style x:Key="Win11Button" TargetType="Button">
-            <Setter Property="Background" Value="#f0f0f0"/>
+            <Setter Property="Background" Value="White"/>
             <Setter Property="Foreground" Value="#202020"/>
             <Setter Property="Padding" Value="15,8"/>
             <Setter Property="FontSize" Value="13"/>

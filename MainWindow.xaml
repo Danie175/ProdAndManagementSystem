@@ -173,7 +173,8 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.Items>
                     <!-- Dashboard -->
-
+                    <Button x:Name="btnDashboard" Style="{StaticResource NavigationButtonStyle}" 
+                            Content="Dashboard" Tag="&#xE80F;" Click="btnDashboard_Click"/>
                     <!-- Customer -->
                     <Button x:Name="btnCustomer" Style="{StaticResource NavigationButtonStyle}" 
                             Content="Customer" Tag="&#xE716;" Click="btnCustomer_Click"/>
@@ -215,6 +216,133 @@
                 <Frame x:Name="ContentFrame" NavigationUIVisibility="Hidden" Padding="15" Navigated="ContentFrame_Navigated"/>
 
                 <!-- Dashboard Default Content (shown when no page is loaded) -->
+                <Border x:Name="DefaultDashboard" Visibility="Visible" Padding="28">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+
+                        <TextBlock Text="Welcome to Concrete Batching Management System" 
+                                   FontSize="22" FontWeight="SemiBold" Foreground="#0078d4" Margin="0,0,0,20"/>
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="217*"/>
+                                <ColumnDefinition Width="108*"/>
+                                <ColumnDefinition Width="109*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- Quick Stats Cards -->
+                            <Border Background="#f9f9f9" CornerRadius="10" Padding="20" Margin="0,0,10,10" Grid.Column="0" Grid.Row="0">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                                        <Border Background="#e9eef6" Width="40" Height="40" CornerRadius="20">
+                                            <TextBlock Text="&#xE8A1;" FontFamily="Segoe MDL2 Assets" FontSize="20" 
+                                                    Foreground="#0078d4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <TextBlock Text="Recent Orders" FontSize="16" FontWeight="SemiBold" 
+                                                  Foreground="#333333" VerticalAlignment="Center" Margin="14,0,0,0"/>
+                                    </StackPanel>
+
+                                    <TextBlock Grid.Row="1" Text="No recent orders found" FontSize="13" Foreground="#777777" 
+                                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                                    <StackPanel Grid.Row="2" Orientation="Horizontal">
+                                        <Button Style="{StaticResource ActionButtonStyle}" Content="New Order" Click="btnOrder_Click"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <Border Background="#f9f9f9" CornerRadius="10" Padding="20" Margin="10,0,0,10" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                                        <Border Background="#e9f5ef" Width="40" Height="40" CornerRadius="20">
+                                            <TextBlock Text="&#xE9F3;" FontFamily="Segoe MDL2 Assets" FontSize="20" 
+                                                    Foreground="#107c41" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <TextBlock Text="Recent Batches" FontSize="16" FontWeight="SemiBold" 
+                                                  Foreground="#333333" VerticalAlignment="Center" Margin="14,0,0,0"/>
+                                    </StackPanel>
+
+                                    <TextBlock Grid.Row="1" Text="No recent batches found" FontSize="13" Foreground="#777777" 
+                                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                                    <StackPanel Grid.Row="2" Orientation="Horizontal">
+                                        <Button Style="{StaticResource ActionButtonStyle}" Content="Create Batch" Click="btnBatch_Click"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <Border Background="#f9f9f9" CornerRadius="10" Padding="20" Margin="0,10,10,0" Grid.Column="0" Grid.Row="1">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                                        <Border Background="#f5effd" Width="40" Height="40" CornerRadius="20">
+                                            <TextBlock Text="&#xE716;" FontFamily="Segoe MDL2 Assets" FontSize="20" 
+                                                    Foreground="#7b4f9b" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <TextBlock Text="Customers" FontSize="16" FontWeight="SemiBold" 
+                                                  Foreground="#333333" VerticalAlignment="Center" Margin="14,0,0,0"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Row="1" Margin="0,0,0,15">
+                                        <TextBlock Text="Total Customers" FontSize="13" Foreground="#777777"/>
+                                        <TextBlock Text="0" FontSize="28" FontWeight="SemiBold" Foreground="#333333" Margin="0,10,0,0"/>
+                                    </StackPanel>
+
+                                    <Button Grid.Row="2" Style="{StaticResource ActionButtonStyle}" Content="Manage Customers" Click="btnCustomer_Click"/>
+                                </Grid>
+                            </Border>
+
+                            <Border Background="#f9f9f9" CornerRadius="10" Padding="20" Margin="10,10,0,0" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                                        <Border Background="#fff4e5" Width="40" Height="40" CornerRadius="20">
+                                            <TextBlock Text="&#xE71D;" FontFamily="Segoe MDL2 Assets" FontSize="20" 
+                                                    Foreground="#ca5010" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <TextBlock Text="Materials" FontSize="16" FontWeight="SemiBold" 
+                                                  Foreground="#333333" VerticalAlignment="Center" Margin="14,0,0,0"/>
+                                    </StackPanel>
+
+                                    <TextBlock Grid.Row="1" Text="No materials in inventory" FontSize="13" Foreground="#777777" 
+                                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                                    <Button Grid.Row="2" Style="{StaticResource ActionButtonStyle}" Content="Manage Materials" Click="btnMaterial_Click"/>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                </Border>
             </Grid>
         </Border>
 

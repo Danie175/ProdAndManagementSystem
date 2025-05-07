@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProdAndManagementSystem.Views"
         mc:Ignorable="d"
-        Title="Material Inventory Management" Height="946" Width="1200"
-        Background="#F9F9F9">
+        Title="Material Inventory Management"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        Background="White" >
 
     <Page.Resources>
         <Style x:Key="Win11Button" TargetType="Button">
@@ -138,176 +140,240 @@
         </Style>
     </Page.Resources>
 
-    <Grid Margin="20">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
 
-        <!-- Title Section -->
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-            <TextBlock Text="Material Inventory Management" Style="{StaticResource HeaderTextStyle}"/>
+            <!-- Title Section -->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <Button Content="Reports" Style="{StaticResource Win11Button}" Margin="0,0,10,0"/>
-                <Button Content="Settings" Style="{StaticResource Win11Button}"/>
-            </StackPanel>
-        </Grid>
+                <TextBlock Text="Material Inventory Management" Style="{StaticResource HeaderTextStyle}"/>
 
-        <!-- Main Content -->
-        <TabControl Grid.Row="1" Margin="0,15,0,0" Style="{StaticResource Win11TabControl}">
-            <!-- Inventory Tab -->
-            <TabItem Header="Inventory Management" Style="{StaticResource Win11TabItem}">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Button Content="Reports" Style="{StaticResource Win11Button}" Margin="0,0,10,0"/>
+                </StackPanel>
+            </Grid>
 
-                    <!-- Input Form Section -->
-                    <Border Grid.Row="0" Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,15"
+            <!-- Main Content -->
+            <TabControl Grid.Row="1" Margin="0,15,0,0" Style="{StaticResource Win11TabControl}">
+                <!-- Inventory Tab -->
+                <TabItem Header="Inventory Management" Style="{StaticResource Win11TabItem}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Input Form Section -->
+                        <Border Grid.Row="0" Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,15"
                             BorderBrush="#e0e0e0" BorderThickness="1">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
 
-                            <TextBlock Grid.Row="0" Grid.ColumnSpan="3" Text="Add/Edit Material Transaction" Style="{StaticResource SectionTextStyle}"/>
+                                <TextBlock Grid.Row="0" Grid.ColumnSpan="3" Text="Add/Edit Material Transaction" Style="{StaticResource SectionTextStyle}"/>
 
-                            <!-- First Row -->
-                            <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,5,10,5">
-                                <TextBlock Text="Transaction Date" Style="{StaticResource LabelTextStyle}"/>
-                                <DatePicker Style="{StaticResource Win11DatePicker}" SelectedDate="{Binding TxDate}"/>
-                            </StackPanel>
+                                <!-- First Row -->
+                                <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,5,10,5">
+                                    <TextBlock Text="Transaction Date" Style="{StaticResource LabelTextStyle}"/>
+                                    <DatePicker Style="{StaticResource Win11DatePicker}" SelectedDate="{Binding TxDate}"/>
+                                </StackPanel>
 
-                            <StackPanel Grid.Row="1" Grid.Column="1" Margin="10,5,10,5">
-                                <TextBlock Text="Transaction Type" Style="{StaticResource LabelTextStyle}"/>
-                                <ComboBox Style="{StaticResource Win11ComboBox}" SelectedItem="{Binding TransactionType}">
-                                    <ComboBoxItem Content="Purchase"/>
-                                    <ComboBoxItem Content="Consumption"/>
-                                    <ComboBoxItem Content="Return"/>
-                                    <ComboBoxItem Content="Transfer"/>
-                                </ComboBox>
-                            </StackPanel>
+                                <StackPanel Grid.Row="1" Grid.Column="1" Margin="10,5,10,5">
+                                    <TextBlock Text="Transaction Type" Style="{StaticResource LabelTextStyle}"/>
+                                    <ComboBox Style="{StaticResource Win11ComboBox}" SelectedItem="{Binding TransactionType}">
+                                        <ComboBoxItem Content="Purchase"/>
+                                        <ComboBoxItem Content="Consumption"/>
+                                        <ComboBoxItem Content="Return"/>
+                                        <ComboBoxItem Content="Transfer"/>
+                                    </ComboBox>
+                                </StackPanel>
 
-                            <StackPanel Grid.Row="1" Grid.Column="2" Margin="10,5,0,5">
-                                <TextBlock Text="Category" Style="{StaticResource LabelTextStyle}"/>
-                                <ComboBox Style="{StaticResource Win11ComboBox}" SelectedItem="{Binding Category}">
-                                    <ComboBoxItem Content="Raw Material"/>
-                                    <ComboBoxItem Content="Packaging"/>
-                                    <ComboBoxItem Content="Equipment"/>
-                                    <ComboBoxItem Content="Spare Parts"/>
-                                </ComboBox>
-                            </StackPanel>
+                                <StackPanel Grid.Row="1" Grid.Column="2" Margin="10,5,0,5">
+                                    <TextBlock Text="Category" Style="{StaticResource LabelTextStyle}"/>
+                                    <ComboBox Style="{StaticResource Win11ComboBox}" SelectedItem="{Binding Category}">
+                                        <ComboBoxItem Content="Raw Material"/>
+                                        <ComboBoxItem Content="Packaging"/>
+                                        <ComboBoxItem Content="Equipment"/>
+                                        <ComboBoxItem Content="Spare Parts"/>
+                                    </ComboBox>
+                                </StackPanel>
 
-                            <!-- Second Row -->
-                            <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,5,10,5">
-                                <TextBlock Text="Material Name" Style="{StaticResource LabelTextStyle}"/>
-                                <ComboBox Style="{StaticResource Win11ComboBox}" SelectedItem="{Binding MaterialName}"/>
-                            </StackPanel>
+                                <!-- Second Row -->
+                                <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,5,10,5">
+                                    <TextBlock Text="Material Name" Style="{StaticResource LabelTextStyle}"/>
+                                    <ComboBox Style="{StaticResource Win11ComboBox}" SelectedItem="{Binding MaterialName}"/>
+                                </StackPanel>
 
-                            <StackPanel Grid.Row="2" Grid.Column="1" Margin="10,5,10,5">
-                                <TextBlock Text="Quantity" Style="{StaticResource LabelTextStyle}"/>
-                                <TextBox Style="{StaticResource Win11TextBox}" Text="{Binding Quantity}"/>
-                            </StackPanel>
+                                <StackPanel Grid.Row="2" Grid.Column="1" Margin="10,5,10,5">
+                                    <TextBlock Text="Quantity" Style="{StaticResource LabelTextStyle}"/>
+                                    <TextBox Style="{StaticResource Win11TextBox}" Text="{Binding Quantity}"/>
+                                </StackPanel>
 
-                            <StackPanel Grid.Row="2" Grid.Column="2" Margin="10,5,0,5">
-                                <TextBlock Text="Supplier" Style="{StaticResource LabelTextStyle}"/>
-                                <ComboBox Style="{StaticResource Win11ComboBox}" SelectedItem="{Binding SupplierId}"/>
-                            </StackPanel>
+                                <StackPanel Grid.Row="2" Grid.Column="2" Margin="10,5,0,5">
+                                    <TextBlock Text="Supplier" Style="{StaticResource LabelTextStyle}"/>
+                                    <ComboBox Style="{StaticResource Win11ComboBox}" SelectedItem="{Binding SupplierId}"/>
+                                </StackPanel>
 
-                            <!-- Third Row -->
-                            <StackPanel Grid.Row="3" Grid.Column="0" Margin="0,5,10,5">
-                                <TextBlock Text="Invoice Number" Style="{StaticResource LabelTextStyle}"/>
-                                <TextBox Style="{StaticResource Win11TextBox}" Text="{Binding InvoiceNumber}"/>
-                            </StackPanel>
+                                <!-- Third Row -->
+                                <StackPanel Grid.Row="3" Grid.Column="0" Margin="0,5,10,5">
+                                    <TextBlock Text="Invoice Number" Style="{StaticResource LabelTextStyle}"/>
+                                    <TextBox Style="{StaticResource Win11TextBox}" Text="{Binding InvoiceNumber}"/>
+                                </StackPanel>
 
-                            <StackPanel Grid.Row="3" Grid.Column="1" Margin="10,5,10,5">
-                                <TextBlock Text="Delivery Chalan No." Style="{StaticResource LabelTextStyle}"/>
-                                <TextBox Style="{StaticResource Win11TextBox}" Text="{Binding DeliveryChalanNo}"/>
-                            </StackPanel>
+                                <StackPanel Grid.Row="3" Grid.Column="1" Margin="10,5,10,5">
+                                    <TextBlock Text="Delivery Chalan No." Style="{StaticResource LabelTextStyle}"/>
+                                    <TextBox Style="{StaticResource Win11TextBox}" Text="{Binding DeliveryChalanNo}"/>
+                                </StackPanel>
 
-                            <StackPanel Grid.Row="3" Grid.Column="2" Margin="10,5,0,5">
-                                <TextBlock Text="Truck Number" Style="{StaticResource LabelTextStyle}"/>
-                                <TextBox Style="{StaticResource Win11TextBox}" Text="{Binding TruckNumber}"/>
-                            </StackPanel>
+                                <StackPanel Grid.Row="3" Grid.Column="2" Margin="10,5,0,5">
+                                    <TextBlock Text="Truck Number" Style="{StaticResource LabelTextStyle}"/>
+                                    <TextBox Style="{StaticResource Win11TextBox}" Text="{Binding TruckNumber}"/>
+                                </StackPanel>
 
-                            <!-- Fourth Row -->
-                            <StackPanel Grid.Row="4" Grid.Column="0" Margin="0,5,10,5">
-                                <TextBlock Text="Driver Name" Style="{StaticResource LabelTextStyle}"/>
-                                <TextBox Style="{StaticResource Win11TextBox}" Text="{Binding DriverName}"/>
-                            </StackPanel>
+                                <!-- Fourth Row -->
+                                <StackPanel Grid.Row="4" Grid.Column="0" Margin="0,5,10,5">
+                                    <TextBlock Text="Driver Name" Style="{StaticResource LabelTextStyle}"/>
+                                    <TextBox Style="{StaticResource Win11TextBox}" Text="{Binding DriverName}"/>
+                                </StackPanel>
 
-                            <StackPanel Grid.Row="4" Grid.Column="1" Margin="10,5,10,5">
-                                <TextBlock Text="Rate" Style="{StaticResource LabelTextStyle}"/>
-                                <TextBox Style="{StaticResource Win11TextBox}" Text="{Binding Rate}"/>
-                            </StackPanel>
+                                <StackPanel Grid.Row="4" Grid.Column="1" Margin="10,5,10,5">
+                                    <TextBlock Text="Rate" Style="{StaticResource LabelTextStyle}"/>
+                                    <TextBox Style="{StaticResource Win11TextBox}" Text="{Binding Rate}"/>
+                                </StackPanel>
 
-                            <StackPanel Grid.Row="4" Grid.Column="2" Margin="10,5,0,5">
-                                <TextBlock Text="Total Cost" Style="{StaticResource LabelTextStyle}"/>
-                                <TextBox Style="{StaticResource Win11TextBox}" Text="{Binding TotalCost}" IsEnabled="False"/>
-                            </StackPanel>
+                                <StackPanel Grid.Row="4" Grid.Column="2" Margin="10,5,0,5">
+                                    <TextBlock Text="Total Cost" Style="{StaticResource LabelTextStyle}"/>
+                                    <TextBox Style="{StaticResource Win11TextBox}" Text="{Binding TotalCost}" IsEnabled="False"/>
+                                </StackPanel>
 
-                            <!-- Fifth Row -->
-                            <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,5,0,15">
-                                <TextBlock Text="Remarks" Style="{StaticResource LabelTextStyle}"/>
-                                <TextBox Style="{StaticResource Win11TextBox}" Text="{Binding Remark}" Height="60" TextWrapping="Wrap"/>
-                            </StackPanel>
+                                <!-- Fifth Row -->
+                                <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,5,0,15">
+                                    <TextBlock Text="Remarks" Style="{StaticResource LabelTextStyle}"/>
+                                    <TextBox Style="{StaticResource Win11TextBox}" Text="{Binding Remark}" Height="60" TextWrapping="Wrap"/>
+                                </StackPanel>
 
-                            <!-- Buttons Row -->
-                            <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Button Content="Clear" Style="{StaticResource Win11Button}" Margin="0,0,10,0"/>
-                                <Button Content="Save" Style="{StaticResource Win11Button}" Background="#0078D7" Foreground="White"/>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
+                                <!-- Buttons Row -->
+                                <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Button Content="Clear" Style="{StaticResource Win11Button}" Margin="0,0,10,0"/>
+                                    <Button Content="Save" Style="{StaticResource Win11Button}" Background="#0078D7" Foreground="White"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
 
-                    <!-- DataGrid Section -->
-                    <Border Grid.Row="1" Background="White" CornerRadius="8" Padding="20"
+                        <!-- DataGrid Section -->
+                        <Border Grid.Row="1" Background="White" CornerRadius="8" Padding="20"
                             BorderBrush="#e0e0e0" BorderThickness="1">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <!-- DataGrid Filter Section -->
+                                <Grid Grid.Row="0" Margin="0,0,0,15">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                                        <TextBlock Text="From Date" Style="{StaticResource LabelTextStyle}"/>
+                                        <DatePicker Style="{StaticResource Win11DatePicker}"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" Margin="10,0,10,0">
+                                        <TextBlock Text="To Date" Style="{StaticResource LabelTextStyle}"/>
+                                        <DatePicker Style="{StaticResource Win11DatePicker}"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="2" Margin="10,0,10,0">
+                                        <TextBlock Text="Material Category" Style="{StaticResource LabelTextStyle}"/>
+                                        <ComboBox Style="{StaticResource Win11ComboBox}">
+                                            <ComboBoxItem Content="All Categories"/>
+                                            <ComboBoxItem Content="Raw Material"/>
+                                            <ComboBoxItem Content="Packaging"/>
+                                            <ComboBoxItem Content="Equipment"/>
+                                            <ComboBoxItem Content="Spare Parts"/>
+                                        </ComboBox>
+                                    </StackPanel>
+
+                                    <Button Grid.Column="3" Content="Filter" Style="{StaticResource Win11Button}" 
+                                        VerticalAlignment="Bottom" Margin="4,0,0,0" Background="#0078D7" Foreground="White" Height="31"/>
+                                </Grid>
+
+                                <!-- DataGrid -->
+                                <DataGrid Grid.Row="1" Style="{StaticResource Win11DataGrid}" ItemContainerStyle="{StaticResource Win11DataGridRow}" SelectionChanged="DataGrid_SelectionChanged">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Date" Binding="{Binding TxDate, StringFormat=\{0:MM/dd/yyyy\}}" Width="90"/>
+                                        <DataGridTextColumn Header="Type" Binding="{Binding TransactionType}" Width="100"/>
+                                        <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="120"/>
+                                        <DataGridTextColumn Header="Material Name" Binding="{Binding MaterialName}" Width="180"/>
+                                        <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="80"/>
+                                        <DataGridTextColumn Header="Supplier" Binding="{Binding Supplier.Name}" Width="150"/>
+                                        <DataGridTextColumn Header="Invoice #" Binding="{Binding InvoiceNumber}" Width="100"/>
+                                        <DataGridTextColumn Header="Rate" Binding="{Binding Rate, StringFormat=\{0:N2\}}" Width="80"/>
+                                        <DataGridTextColumn Header="Total Cost" Binding="{Binding TotalCost, StringFormat=\{0:N2\}}" Width="100"/>
+                                        <DataGridTemplateColumn Header="Actions" Width="*">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Button Content="Edit" Style="{StaticResource Win11Button}" Padding="8,3" Margin="0,0,5,0" Background="#f0f0f0"/>
+                                                        <Button Content="Delete" Style="{StaticResource Win11Button}" Padding="8,3" Background="#f0f0f0"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </TabItem>
+
+                <!-- Stock Summary Tab -->
+                <TabItem Header="Stock Summary" Style="{StaticResource Win11TabItem}">
+                    <Border Background="White" CornerRadius="8" Padding="20"
+                        BorderBrush="#e0e0e0" BorderThickness="1">
+
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
-                            <!-- DataGrid Filter Section -->
+                            <!-- Filter Controls -->
                             <Grid Grid.Row="0" Margin="0,0,0,15">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
 
                                 <StackPanel Grid.Column="0" Margin="0,0,10,0">
-                                    <TextBlock Text="From Date" Style="{StaticResource LabelTextStyle}"/>
-                                    <DatePicker Style="{StaticResource Win11DatePicker}"/>
-                                </StackPanel>
-
-                                <StackPanel Grid.Column="1" Margin="10,0,10,0">
-                                    <TextBlock Text="To Date" Style="{StaticResource LabelTextStyle}"/>
-                                    <DatePicker Style="{StaticResource Win11DatePicker}"/>
-                                </StackPanel>
-
-                                <StackPanel Grid.Column="2" Margin="10,0,10,0">
-                                    <TextBlock Text="Material Category" Style="{StaticResource LabelTextStyle}"/>
+                                    <TextBlock Text="Category" Style="{StaticResource LabelTextStyle}"/>
                                     <ComboBox Style="{StaticResource Win11ComboBox}">
                                         <ComboBoxItem Content="All Categories"/>
                                         <ComboBoxItem Content="Raw Material"/>
@@ -317,28 +383,84 @@
                                     </ComboBox>
                                 </StackPanel>
 
-                                <Button Grid.Column="3" Content="Filter" Style="{StaticResource Win11Button}" 
-                                        VerticalAlignment="Bottom" Margin="4,0,0,0" Background="#0078D7" Foreground="White" Height="31"/>
+                                <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                                    <TextBlock Text="Search Material" Style="{StaticResource LabelTextStyle}"/>
+                                    <TextBox Style="{StaticResource Win11TextBox}"/>
+                                </StackPanel>
+
+                                <Button Grid.Column="2" Content="Export to Excel" Style="{StaticResource Win11Button}"
+                                    VerticalAlignment="Bottom" Margin="26,0,0,0" Background="#107C41" Foreground="White" Height="38"/>
                             </Grid>
 
-                            <!-- DataGrid -->
+                            <!-- Stock Summary Grid -->
                             <DataGrid Grid.Row="1" Style="{StaticResource Win11DataGrid}" ItemContainerStyle="{StaticResource Win11DataGridRow}">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Date" Binding="{Binding TxDate, StringFormat=\{0:MM/dd/yyyy\}}" Width="90"/>
-                                    <DataGridTextColumn Header="Type" Binding="{Binding TransactionType}" Width="100"/>
+                                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="60"/>
                                     <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="120"/>
-                                    <DataGridTextColumn Header="Material Name" Binding="{Binding MaterialName}" Width="180"/>
-                                    <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="80"/>
-                                    <DataGridTextColumn Header="Supplier" Binding="{Binding Supplier.Name}" Width="150"/>
-                                    <DataGridTextColumn Header="Invoice #" Binding="{Binding InvoiceNumber}" Width="100"/>
-                                    <DataGridTextColumn Header="Rate" Binding="{Binding Rate, StringFormat=\{0:N2\}}" Width="80"/>
-                                    <DataGridTextColumn Header="Total Cost" Binding="{Binding TotalCost, StringFormat=\{0:N2\}}" Width="100"/>
+                                    <DataGridTextColumn Header="Material Name" Binding="{Binding MaterialName}" Width="200"/>
+                                    <DataGridTextColumn Header="Available Stock" Binding="{Binding AvailableStock}" Width="120"/>
+                                    <DataGridTextColumn Header="Average Cost" Binding="{Binding AverageCost, StringFormat=\{0:N2\}}" Width="120"/>
+                                    <DataGridTextColumn Header="Total Value" Binding="{Binding TotalValue, StringFormat=\{0:N2\}}" Width="120"/>
+                                    <DataGridTextColumn Header="Last Purchase Date" Binding="{Binding LastPurchaseDate, StringFormat=\{0:MM/dd/yyyy\}}" Width="150"/>
+                                    <DataGridTextColumn Header="Last Purchase Price" Binding="{Binding LastPurchasePrice, StringFormat=\{0:N2\}}" Width="150"/>
+                                    <DataGridTemplateColumn Header="Actions" Width="*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Content="History" Style="{StaticResource Win11Button}" Padding="8,3" Background="#f0f0f0"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </Border>
+                </TabItem>
+
+                <!-- Suppliers Tab -->
+                <TabItem Header="Suppliers" Style="{StaticResource Win11TabItem}">
+                    <Border Background="White" CornerRadius="8" Padding="20"
+                        BorderBrush="#e0e0e0" BorderThickness="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- Filter Controls -->
+                            <Grid Grid.Row="0" Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="Auto" MinWidth="158.907"/>
+                                    <ColumnDefinition Width="Auto" MinWidth="72.484"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,159,0">
+                                    <TextBlock Text="Search Supplier" Style="{StaticResource LabelTextStyle}"/>
+                                    <TextBox Style="{StaticResource Win11TextBox}"/>
+                                </StackPanel>
+
+                                <Button Grid.Column="1" Content="Add New Supplier" Style="{StaticResource Win11Button}"
+                                    VerticalAlignment="Bottom" Margin="18,0,35,0" Background="#0078D7" Foreground="White" Height="33"/>
+
+                                <Button Grid.Column="2" Content="Export List" Style="{StaticResource Win11Button}"
+                                    VerticalAlignment="Top" Background="#107C41" Foreground="White" Height="33" Margin="11,25,0,0"/>
+                            </Grid>
+
+                            <!-- Suppliers Grid -->
+                            <DataGrid Grid.Row="1" Style="{StaticResource Win11DataGrid}" ItemContainerStyle="{StaticResource Win11DataGridRow}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="60"/>
+                                    <DataGridTextColumn Header="Supplier Name" Binding="{Binding Name}" Width="200"/>
+                                    <DataGridTextColumn Header="Contact Person" Binding="{Binding ContactPerson}" Width="150"/>
+                                    <DataGridTextColumn Header="Phone" Binding="{Binding Phone}" Width="120"/>
+                                    <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="180"/>
+                                    <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="250"/>
                                     <DataGridTemplateColumn Header="Actions" Width="*">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
                                                     <Button Content="Edit" Style="{StaticResource Win11Button}" Padding="8,3" Margin="0,0,5,0" Background="#f0f0f0"/>
-                                                    <Button Content="Delete" Style="{StaticResource Win11Button}" Padding="8,3" Background="#f0f0f0"/>
+                                                    <Button Content="View History" Style="{StaticResource Win11Button}" Padding="8,3" Background="#f0f0f0"/>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>
@@ -347,125 +469,8 @@
                             </DataGrid>
                         </Grid>
                     </Border>
-                </Grid>
-            </TabItem>
-
-            <!-- Stock Summary Tab -->
-            <TabItem Header="Stock Summary" Style="{StaticResource Win11TabItem}">
-                <Border Background="White" CornerRadius="8" Padding="20"
-                        BorderBrush="#e0e0e0" BorderThickness="1">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-
-                        <!-- Filter Controls -->
-                        <Grid Grid.Row="0" Margin="0,0,0,15">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-
-                            <StackPanel Grid.Column="0" Margin="0,0,10,0">
-                                <TextBlock Text="Category" Style="{StaticResource LabelTextStyle}"/>
-                                <ComboBox Style="{StaticResource Win11ComboBox}">
-                                    <ComboBoxItem Content="All Categories"/>
-                                    <ComboBoxItem Content="Raw Material"/>
-                                    <ComboBoxItem Content="Packaging"/>
-                                    <ComboBoxItem Content="Equipment"/>
-                                    <ComboBoxItem Content="Spare Parts"/>
-                                </ComboBox>
-                            </StackPanel>
-
-                            <StackPanel Grid.Column="1" Margin="10,0,0,0">
-                                <TextBlock Text="Search Material" Style="{StaticResource LabelTextStyle}"/>
-                                <TextBox Style="{StaticResource Win11TextBox}"/>
-                            </StackPanel>
-
-                            <Button Grid.Column="2" Content="Export to Excel" Style="{StaticResource Win11Button}"
-                                    VerticalAlignment="Bottom" Margin="26,0,0,0" Background="#107C41" Foreground="White" Height="38"/>
-                        </Grid>
-
-                        <!-- Stock Summary Grid -->
-                        <DataGrid Grid.Row="1" Style="{StaticResource Win11DataGrid}" ItemContainerStyle="{StaticResource Win11DataGridRow}">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="60"/>
-                                <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="120"/>
-                                <DataGridTextColumn Header="Material Name" Binding="{Binding MaterialName}" Width="200"/>
-                                <DataGridTextColumn Header="Available Stock" Binding="{Binding AvailableStock}" Width="120"/>
-                                <DataGridTextColumn Header="Average Cost" Binding="{Binding AverageCost, StringFormat=\{0:N2\}}" Width="120"/>
-                                <DataGridTextColumn Header="Total Value" Binding="{Binding TotalValue, StringFormat=\{0:N2\}}" Width="120"/>
-                                <DataGridTextColumn Header="Last Purchase Date" Binding="{Binding LastPurchaseDate, StringFormat=\{0:MM/dd/yyyy\}}" Width="150"/>
-                                <DataGridTextColumn Header="Last Purchase Price" Binding="{Binding LastPurchasePrice, StringFormat=\{0:N2\}}" Width="150"/>
-                                <DataGridTemplateColumn Header="Actions" Width="*">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Button Content="History" Style="{StaticResource Win11Button}" Padding="8,3" Background="#f0f0f0"/>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </Grid>
-                </Border>
-            </TabItem>
-
-            <!-- Suppliers Tab -->
-            <TabItem Header="Suppliers" Style="{StaticResource Win11TabItem}">
-                <Border Background="White" CornerRadius="8" Padding="20"
-                        BorderBrush="#e0e0e0" BorderThickness="1">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-
-                        <!-- Filter Controls -->
-                        <Grid Grid.Row="0" Margin="0,0,0,15">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="Auto" MinWidth="158.907"/>
-                                <ColumnDefinition Width="Auto" MinWidth="72.484"/>
-                            </Grid.ColumnDefinitions>
-
-                            <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,159,0">
-                                <TextBlock Text="Search Supplier" Style="{StaticResource LabelTextStyle}"/>
-                                <TextBox Style="{StaticResource Win11TextBox}"/>
-                            </StackPanel>
-
-                            <Button Grid.Column="1" Content="Add New Supplier" Style="{StaticResource Win11Button}"
-                                    VerticalAlignment="Bottom" Margin="18,0,35,0" Background="#0078D7" Foreground="White" Height="33"/>
-
-                            <Button Grid.Column="2" Content="Export List" Style="{StaticResource Win11Button}"
-                                    VerticalAlignment="Top" Background="#107C41" Foreground="White" Height="33" Margin="11,25,0,0"/>
-                        </Grid>
-
-                        <!-- Suppliers Grid -->
-                        <DataGrid Grid.Row="1" Style="{StaticResource Win11DataGrid}" ItemContainerStyle="{StaticResource Win11DataGridRow}">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="60"/>
-                                <DataGridTextColumn Header="Supplier Name" Binding="{Binding Name}" Width="200"/>
-                                <DataGridTextColumn Header="Contact Person" Binding="{Binding ContactPerson}" Width="150"/>
-                                <DataGridTextColumn Header="Phone" Binding="{Binding Phone}" Width="120"/>
-                                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="180"/>
-                                <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="250"/>
-                                <DataGridTemplateColumn Header="Actions" Width="*">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Button Content="Edit" Style="{StaticResource Win11Button}" Padding="8,3" Margin="0,0,5,0" Background="#f0f0f0"/>
-                                                <Button Content="View History" Style="{StaticResource Win11Button}" Padding="8,3" Background="#f0f0f0"/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </Grid>
-                </Border>
-            </TabItem>
-        </TabControl>
-    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </ScrollViewer>
 </Page>
