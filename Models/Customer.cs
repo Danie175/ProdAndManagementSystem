@@ -9,6 +9,7 @@ namespace ProdAndManagementSystem.Models;
 [Table("CUSTOMER")]
 [Index("Customername", Name = "IX_CUSTOMER_NAME")]
 [Index("Customerid", Name = "UQ__CUSTOMER__61DBD789FDE27297", IsUnique = true)]
+[Index(nameof(CodeId), Name = "UQ_CUSTOMER_CODEID", IsUnique = true)]
 public partial class Customer
 {
     [Key]
@@ -29,6 +30,14 @@ public partial class Customer
     [Column("CUSTOMERNUMBER")]
     [StringLength(50)]
     public string? Customernumber { get; set; }
+
+    //[Column("SITENAME")]
+    //[StringLength(50)]
+    //public string? Sitename { get; set; }
+
+    [Column("CODE_ID")]
+    [StringLength(20)]
+    public string? CodeId { get; set; }
 
     [Column("UPDATEDATE", TypeName = "datetime")]
     public DateTime? Updatedate { get; set; }

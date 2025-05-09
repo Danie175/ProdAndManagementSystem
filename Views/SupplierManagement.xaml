@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:ProdAndManagementSystem.Views"
         mc:Ignorable="d"
         Title="Customer Management"
-        HorizontalAlignment="Stretch"
-        VerticalAlignment="Stretch"
-        Background="White">
+        d:DesignHeight="700" d:DesignWidth="1000"
+
+    Background="White">
 
     <Page.Resources>
         <!-- Windows 11 inspired styles -->

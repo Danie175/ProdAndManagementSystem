@@ -1,52 +1,56 @@
 ﻿<Page x:Class="ProdAndManagementSystem.Views.RecipeManagement"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ProdAndManagementSystem.Views"
-        mc:Ignorable="d"
-        Title="Recipe Management"
-        HorizontalAlignment="Stretch"
-        VerticalAlignment="Stretch"
-        Background="#f8f8f8">
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProdAndManagementSystem.Views"
+      mc:Ignorable="d" 
+      Title="Recipe Management"
+      d:DesignHeight="700" d:DesignWidth="1000">
 
     <Page.Resources>
-        <!-- Windows 11 Style Resources -->
+        <!-- Windows 11 inspired styles -->
         <Style x:Key="Win11Button" TargetType="Button">
             <Setter Property="Background" Value="#f0f0f0"/>
             <Setter Property="Foreground" Value="#202020"/>
-            <Setter Property="Padding" Value="20,10"/>
+            <Setter Property="Padding" Value="16,8"/>
             <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}"
+                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}" 
                                 CornerRadius="4"
                                 Padding="{TemplateBinding Padding}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="10" ShadowDepth="1" Opacity="0.2" Color="#000000"/>
+                            </Border.Effect>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#e5e5e5" TargetName="border"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#d0d0d0" TargetName="border"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#e0e0e0"/>
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="#d0d0d0"/>
-                </Trigger>
-            </Style.Triggers>
         </Style>
 
         <Style x:Key="Win11TextBox" TargetType="TextBox">
-            <Setter Property="Background" Value="White"/>
+            <Setter Property="Background" Value="#f9f9f9"/>
             <Setter Property="Foreground" Value="#202020"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="BorderBrush" Value="#d0d0d0"/>
+            <Setter Property="BorderBrush" Value="#d4d4d4"/>
             <Setter Property="Padding" Value="8,6"/>
-            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="13"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
@@ -54,23 +58,47 @@
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="4">
-                            <ScrollViewer x:Name="PART_ContentHost" Margin="{TemplateBinding Padding}"/>
+                            <ScrollViewer x:Name="PART_ContentHost"/>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="#acacac"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="#0078d4"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsFocused" Value="True">
-                    <Setter Property="BorderBrush" Value="#0078d7"/>
-                </Trigger>
-            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="Win11ComboBox" TargetType="ComboBox">
+            <Setter Property="Background" Value="#f9f9f9"/>
+            <Setter Property="Foreground" Value="#202020"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#d4d4d4"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+
+        <Style x:Key="Win11Label" TargetType="Label">
+            <Setter Property="Foreground" Value="#505050"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Padding" Value="0,4"/>
         </Style>
 
         <Style x:Key="Win11GroupBox" TargetType="GroupBox">
-            <Setter Property="BorderBrush" Value="#d0d0d0"/>
+            <Setter Property="Margin" Value="0,12,0,8"/>
+            <Setter Property="Padding" Value="12,8"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="10"/>
-            <Setter Property="Margin" Value="5"/>
+            <Setter Property="BorderBrush" Value="#e0e0e0"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#202020"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="GroupBox">
@@ -79,287 +107,598 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <Border BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    Background="#f4f4f4"
-                                    CornerRadius="8"
-                                    Grid.RowSpan="2"/>
-                            <Border Grid.Row="0" Padding="5,0,5,0" Margin="10,0,0,0">
+                            <Border Background="Transparent" Padding="4,0,0,0">
                                 <ContentPresenter ContentSource="Header" RecognizesAccessKey="True"/>
                             </Border>
-                            <ContentPresenter Grid.Row="1" Margin="{TemplateBinding Padding}"/>
+                            <Border Grid.Row="1" 
+                                    Background="White" 
+                                    BorderBrush="{TemplateBinding BorderBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="8"
+                                    Padding="{TemplateBinding Padding}">
+                                <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="10" ShadowDepth="1" Opacity="0.1" Color="#000000"/>
+                                </Border.Effect>
+                            </Border>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
 
-        <Style x:Key="Win11RadioButton" TargetType="RadioButton">
-            <Setter Property="Margin" Value="5,2"/>
+        <Style x:Key="Win11Expander" TargetType="Expander">
+            <Setter Property="Margin" Value="0,6"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#e0e0e0"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
             <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="#202020"/>
+            <Setter Property="Background" Value="White"/>
+        </Style>
+
+        <Style x:Key="Win11Header" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#202020"/>
+            <Setter Property="Margin" Value="0,0,0,16"/>
+        </Style>
+
+        <Style x:Key="Win11Subheader" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#505050"/>
+            <Setter Property="Margin" Value="0,8,0,4"/>
         </Style>
     </Page.Resources>
 
-    <Grid Margin="15">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel Margin="24">
+                <!-- Header -->
+                <Grid Margin="0,0,0,16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
 
-        <!-- Header -->
-        <Border Background="#0078d7" CornerRadius="10" Padding="20,10" Margin="0,0,0,15">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Recipe Management System" FontSize="22" FontWeight="SemiBold" Foreground="White"/>
-                <StackPanel Grid.Column="1" Orientation="Horizontal">
-                    <TextBlock x:Name="CurrentDateText" Text="{Binding SomeDateProperty, StringFormat='{}{0:MMMM, d, yyyy}'}" Foreground="White" VerticalAlignment="Center"/>
-                </StackPanel>
-            </Grid>
-        </Border>
+                    <TextBlock Text="Recipe Details" Style="{StaticResource Win11Header}"/>
 
-        <!-- Main Content -->
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1">
+                        <Button Content="Save" Margin="8,0" Style="{StaticResource Win11Button}" Width="100"/>
+                        <Button Content="Cancel" Margin="8,0" Style="{StaticResource Win11Button}" Width="100"/>
+                    </StackPanel>
+                </Grid>
 
-                <!-- Left Panel -->
-                <StackPanel Grid.Column="0" Margin="0,0,10,0">
-                    <!-- Recipe Basic Info -->
-                    <GroupBox Header="Recipe Information" Style="{StaticResource Win11GroupBox}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                <!-- Basic Info -->
+                <GroupBox Header="Basic Information" Style="{StaticResource Win11GroupBox}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                            <TextBlock Text="Recipe ID:" Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-                            <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource Win11TextBox}" Margin="5"/>
+                        <StackPanel Grid.Column="0" Margin="0,0,12,0">
+                            <Label Content="Recipe ID" Style="{StaticResource Win11Label}"/>
+                            <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,12"/>
+                        </StackPanel>
 
-                            <TextBlock Text="Recipe Name:" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-                            <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource Win11TextBox}" Margin="5"/>
+                        <StackPanel Grid.Column="1" Margin="12,0,0,0">
+                            <Label Content="Recipe Name" Style="{StaticResource Win11Label}"/>
+                            <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,12"/>
+                        </StackPanel>
 
-                            <Border Grid.Row="2" Grid.ColumnSpan="2" Background="#f0f0f0" CornerRadius="6" Margin="0,10,0,0" Padding="10">
-                                <TextBlock Text="Enter the basic recipe information above. Recipe ID and Name are required fields." Foreground="#505050" TextWrapping="Wrap"/>
-                            </Border>
-                        </Grid>
-                    </GroupBox>
+                        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,12,0">
+                            <Label Content="Created Date" Style="{StaticResource Win11Label}"/>
+                            <DatePicker Margin="0,0,0,12" FontFamily="Segoe UI" FontSize="13"/>
+                        </StackPanel>
 
-                    <!-- Aggregates -->
-                    <GroupBox Header="Aggregates" Style="{StaticResource Win11GroupBox}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Row="1" Grid.Column="1" Margin="12,0,0,0">
+                            <Label Content="Last Updated Date" Style="{StaticResource Win11Label}"/>
+                            <DatePicker Margin="0,0,0,12" FontFamily="Segoe UI" FontSize="13"/>
+                        </StackPanel>
 
-                            <!-- Aggregate 1 -->
-                            <RadioButton Content="Aggregate 1" Grid.Row="0" Grid.Column="0" Style="{StaticResource Win11RadioButton}" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Agg1name" Grid.Row="0" Grid.Column="1" Style="{StaticResource Win11TextBox}" Margin="5"/>
-                            <TextBlock Text="STP:" Grid.Row="0" Grid.Column="2" Margin="10,0,5,0" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Agg1stp" Grid.Row="0" Grid.Column="3" Style="{StaticResource Win11TextBox}" Margin="5"/>
+                        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                            <Label Content="Serial Number" Style="{StaticResource Win11Label}"/>
+                            <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,12"/>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
 
-                            <!-- Aggregate 2 -->
-                            <RadioButton Content="Aggregate 2" Grid.Row="1" Grid.Column="0" Style="{StaticResource Win11RadioButton}" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Agg2name" Grid.Row="1" Grid.Column="1" Style="{StaticResource Win11TextBox}" Margin="5"/>
-                            <TextBlock Text="STP:" Grid.Row="1" Grid.Column="2" Margin="10,0,5,0" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Agg2stp" Grid.Row="1" Grid.Column="3" Style="{StaticResource Win11TextBox}" Margin="5"/>
+                <!-- Aggregates Section -->
+                <GroupBox Header="Aggregates" Style="{StaticResource Win11GroupBox}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                            <!-- Aggregate 3 -->
-                            <RadioButton Content="Aggregate 3" Grid.Row="2" Grid.Column="0" Style="{StaticResource Win11RadioButton}" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Agg3name" Grid.Row="2" Grid.Column="1" Style="{StaticResource Win11TextBox}" Margin="5"/>
-                            <TextBlock Text="STP:" Grid.Row="2" Grid.Column="2" Margin="10,0,5,0" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Agg3stp" Grid.Row="2" Grid.Column="3" Style="{StaticResource Win11TextBox}" Margin="5"/>
+                        <!-- Aggregate 1 -->
+                        <Expander Header="Aggregate 1" Style="{StaticResource Win11Expander}" Grid.Column="0" Margin="0,0,6,6" IsExpanded="True">
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
 
-                            <!-- Aggregate 4 -->
-                            <RadioButton Content="Aggregate 4" Grid.Row="3" Grid.Column="0" Style="{StaticResource Win11RadioButton}" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Agg4name" Grid.Row="3" Grid.Column="1" Style="{StaticResource Win11TextBox}" Margin="5"/>
-                            <TextBlock Text="STP:" Grid.Row="3" Grid.Column="2" Margin="10,0,5,0" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Agg4stp" Grid.Row="3" Grid.Column="3" Style="{StaticResource Win11TextBox}" Margin="5"/>
-                        </Grid>
-                    </GroupBox>
+                                    <StackPanel Grid.Column="0" Margin="0,0,6,0">
+                                        <Label Content="Name" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
 
-                    <!-- Cement -->
-                    <GroupBox Header="Cement" Style="{StaticResource Win11GroupBox}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="1" Margin="6,0,0,0">
+                                        <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </Expander>
 
-                            <!-- Cement 1 -->
-                            <RadioButton Content="Cement 1" Grid.Row="0" Grid.Column="0" Style="{StaticResource Win11RadioButton}" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Cement1name" Grid.Row="0" Grid.Column="1" Style="{StaticResource Win11TextBox}" Margin="5"/>
-                            <TextBlock Text="STP:" Grid.Row="0" Grid.Column="2" Margin="10,0,5,0" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Cement1stp" Grid.Row="0" Grid.Column="3" Style="{StaticResource Win11TextBox}" Margin="5"/>
+                        <!-- Aggregate 2 -->
+                        <Expander Header="Aggregate 2" Style="{StaticResource Win11Expander}" Grid.Column="1" Margin="6,0,0,6" IsExpanded="True">
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
 
-                            <!-- Cement 2 -->
-                            <RadioButton Content="Cement 2" Grid.Row="1" Grid.Column="0" Style="{StaticResource Win11RadioButton}" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Cement2name" Grid.Row="1" Grid.Column="1" Style="{StaticResource Win11TextBox}" Margin="5"/>
-                            <TextBlock Text="STP:" Grid.Row="1" Grid.Column="2" Margin="10,0,5,0" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Cement2stp" Grid.Row="1" Grid.Column="3" Style="{StaticResource Win11TextBox}" Margin="5"/>
+                                    <StackPanel Grid.Column="0" Margin="0,0,6,0">
+                                        <Label Content="Name" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
 
-                            <!-- Cement 3 -->
-                            <RadioButton Content="Cement 3" Grid.Row="2" Grid.Column="0" Style="{StaticResource Win11RadioButton}" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Cement3name" Grid.Row="2" Grid.Column="1" Style="{StaticResource Win11TextBox}" Margin="5"/>
-                            <TextBlock Text="STP:" Grid.Row="2" Grid.Column="2" Margin="10,0,5,0" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Cement3stp" Grid.Row="2" Grid.Column="3" Style="{StaticResource Win11TextBox}" Margin="5"/>
+                                    <StackPanel Grid.Column="1" Margin="6,0,0,0">
+                                        <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </Expander>
 
-                            <!-- Cement 4 -->
-                            <RadioButton Content="Cement 4" Grid.Row="3" Grid.Column="0" Style="{StaticResource Win11RadioButton}" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Cement4name" Grid.Row="3" Grid.Column="1" Style="{StaticResource Win11TextBox}" Margin="5"/>
-                            <TextBlock Text="STP:" Grid.Row="3" Grid.Column="2" Margin="10,0,5,0" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Cement4stp" Grid.Row="3" Grid.Column="3" Style="{StaticResource Win11TextBox}" Margin="5"/>
-                        </Grid>
-                    </GroupBox>
-                </StackPanel>
+                        <!-- Aggregate 3 -->
+                        <Expander Header="Aggregate 3" Style="{StaticResource Win11Expander}" Grid.Row="1" Grid.Column="0" Margin="0,6,6,0">
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
 
-                <!-- Right Panel -->
-                <StackPanel Grid.Column="1" Margin="10,0,0,0">
-                    <!-- Water -->
-                    <GroupBox Header="Water" Style="{StaticResource Win11GroupBox}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0" Margin="0,0,6,0">
+                                        <Label Content="Name" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
 
-                            <!-- Water 1 -->
-                            <RadioButton Content="Water 1" Grid.Row="0" Grid.Column="0" Style="{StaticResource Win11RadioButton}" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Water1name" Grid.Row="0" Grid.Column="1" Style="{StaticResource Win11TextBox}" Margin="5"/>
-                            <TextBlock Text="STP:" Grid.Row="0" Grid.Column="2" Margin="10,0,5,0" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Water1stp" Grid.Row="0" Grid.Column="3" Style="{StaticResource Win11TextBox}" Margin="5"/>
+                                    <StackPanel Grid.Column="1" Margin="6,0,0,0">
+                                        <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </Expander>
 
-                            <!-- Water 2 -->
-                            <RadioButton Content="Water 2" Grid.Row="1" Grid.Column="0" Style="{StaticResource Win11RadioButton}" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Water2name" Grid.Row="1" Grid.Column="1" Style="{StaticResource Win11TextBox}" Margin="5"/>
-                            <TextBlock Text="STP:" Grid.Row="1" Grid.Column="2" Margin="10,0,5,0" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Water2stp" Grid.Row="1" Grid.Column="3" Style="{StaticResource Win11TextBox}" Margin="5"/>
-                        </Grid>
-                    </GroupBox>
+                        <!-- Aggregate 4 -->
+                        <Expander Header="Aggregate 4" Style="{StaticResource Win11Expander}" Grid.Row="1" Grid.Column="1" Margin="6,6,0,0">
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
 
-                    <!-- Admix -->
-                    <GroupBox Header="Admixtures" Style="{StaticResource Win11GroupBox}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0" Margin="0,0,6,0">
+                                        <Label Content="Name" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
 
-                            <!-- Admix 1 -->
-                            <RadioButton Content="Admix 1" Grid.Row="0" Grid.Column="0" Style="{StaticResource Win11RadioButton}" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Admix1name" Grid.Row="0" Grid.Column="1" Style="{StaticResource Win11TextBox}" Margin="5"/>
-                            <TextBlock Text="STP:" Grid.Row="0" Grid.Column="2" Margin="10,0,5,0" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Admix1stp" Grid.Row="0" Grid.Column="3" Style="{StaticResource Win11TextBox}" Margin="5"/>
+                                    <StackPanel Grid.Column="1" Margin="6,0,0,0">
+                                        <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </Expander>
+                    </Grid>
+                </GroupBox>
 
-                            <!-- Admix 2 -->
-                            <RadioButton Content="Admix 2" Grid.Row="1" Grid.Column="0" Style="{StaticResource Win11RadioButton}" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Admix2name" Grid.Row="1" Grid.Column="1" Style="{StaticResource Win11TextBox}" Margin="5"/>
-                            <TextBlock Text="STP:" Grid.Row="1" Grid.Column="2" Margin="10,0,5,0" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Admix2stp" Grid.Row="1" Grid.Column="3" Style="{StaticResource Win11TextBox}" Margin="5"/>
+                <!-- Cement Section -->
+                <GroupBox Header="Cement" Style="{StaticResource Win11GroupBox}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                            <!-- Admix 3 -->
-                            <RadioButton Content="Admix 3" Grid.Row="2" Grid.Column="0" Style="{StaticResource Win11RadioButton}" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Admix3name" Grid.Row="2" Grid.Column="1" Style="{StaticResource Win11TextBox}" Margin="5"/>
-                            <TextBlock Text="STP:" Grid.Row="2" Grid.Column="2" Margin="10,0,5,0" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Admix3stp" Grid.Row="2" Grid.Column="3" Style="{StaticResource Win11TextBox}" Margin="5"/>
+                        <!-- Cement 1 -->
+                        <Expander Header="Cement 1" Style="{StaticResource Win11Expander}" Grid.Column="0" Margin="0,0,6,6" IsExpanded="True">
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
 
-                            <!-- Admix New -->
-                            <RadioButton Content="New Admix" Grid.Row="3" Grid.Column="0" Style="{StaticResource Win11RadioButton}" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Admixnewname" Grid.Row="3" Grid.Column="1" Style="{StaticResource Win11TextBox}" Margin="5"/>
-                            <TextBlock Text="STP:" Grid.Row="3" Grid.Column="2" Margin="10,0,5,0" VerticalAlignment="Center"/>
-                            <TextBox x:Name="Admixnewstp" Grid.Row="3" Grid.Column="3" Style="{StaticResource Win11TextBox}" Margin="5"/>
-                        </Grid>
-                    </GroupBox>
+                                    <StackPanel Grid.Column="0" Margin="0,0,6,0">
+                                        <Label Content="Name" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
 
-                    <!-- Recipe Preview -->
-                    <GroupBox Header="Recipe Summary" Style="{StaticResource Win11GroupBox}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
+                                    <StackPanel Grid.Column="1" Margin="6,0,0,0">
+                                        <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </Expander>
 
-                            <TextBlock Text="Recipe Components Summary" FontWeight="SemiBold" Margin="0,0,0,10"/>
-                            <Border Grid.Row="1" Background="White" CornerRadius="5" BorderThickness="1" BorderBrush="#d0d0d0" Padding="10">
-                                <ListView BorderThickness="0" Background="Transparent">
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid Margin="0,5">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                </Grid.ColumnDefinitions>
-                                                <TextBlock Text="{Binding Name}" Grid.Column="0"/>
-                                                <TextBlock Text="{Binding Value}" Grid.Column="1"/>
-                                            </Grid>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
-                            </Border>
-                        </Grid>
-                    </GroupBox>
-                </StackPanel>
-            </Grid>
+                        <!-- Cement 2 -->
+                        <Expander Header="Cement 2" Style="{StaticResource Win11Expander}" Grid.Column="1" Margin="6,0,0,6">
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0" Margin="0,0,6,0">
+                                        <Label Content="Name" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" Margin="6,0,0,0">
+                                        <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </Expander>
+
+                        <!-- Cement 3 -->
+                        <Expander Header="Cement 3" Style="{StaticResource Win11Expander}" Grid.Row="1" Grid.Column="0" Margin="0,6,6,0">
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0" Margin="0,0,6,0">
+                                        <Label Content="Name" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" Margin="6,0,0,0">
+                                        <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </Expander>
+
+                        <!-- Cement 4 -->
+                        <Expander Header="Cement 4" Style="{StaticResource Win11Expander}" Grid.Row="1" Grid.Column="1" Margin="6,6,0,0">
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0" Margin="0,0,6,0">
+                                        <Label Content="Name" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" Margin="6,0,0,0">
+                                        <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </Expander>
+                    </Grid>
+                </GroupBox>
+
+                <!-- Water Section -->
+                <GroupBox Header="Water" Style="{StaticResource Win11GroupBox}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Water 1 -->
+                        <Expander Header="Water 1" Style="{StaticResource Win11Expander}" Grid.Column="0" Margin="0,0,6,0" IsExpanded="True">
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0" Margin="0,0,6,0">
+                                        <Label Content="Name" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" Margin="6,0,0,0">
+                                        <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </Expander>
+
+                        <!-- Water 2 -->
+                        <Expander Header="Water 2" Style="{StaticResource Win11Expander}" Grid.Column="1" Margin="6,0,0,0">
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0" Margin="0,0,6,0">
+                                        <Label Content="Name" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" Margin="6,0,0,0">
+                                        <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </Expander>
+                    </Grid>
+                </GroupBox>
+
+                <!-- Admixtures Section -->
+                <GroupBox Header="Admixtures" Style="{StaticResource Win11GroupBox}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Admix 1 -->
+                        <Expander Header="Admixture 1" Style="{StaticResource Win11Expander}" Grid.Column="0" Margin="0,0,6,6" IsExpanded="True">
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0" Margin="0,0,6,0">
+                                        <Label Content="Name" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" Margin="6,0,0,0">
+                                        <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </Expander>
+
+                        <!-- Admix 2 -->
+                        <Expander Header="Admixture 2" Style="{StaticResource Win11Expander}" Grid.Column="1" Margin="6,0,0,6">
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0" Margin="0,0,6,0">
+                                        <Label Content="Name" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" Margin="6,0,0,0">
+                                        <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </Expander>
+
+                        <!-- Admix 3 -->
+                        <Expander Header="Admixture 3" Style="{StaticResource Win11Expander}" Grid.Row="1" Grid.Column="0" Margin="0,6,6,0">
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0" Margin="0,0,6,0">
+                                        <Label Content="Name" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" Margin="6,0,0,0">
+                                        <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </Expander>
+
+                        <!-- Admix New -->
+                        <Expander Header="New Admixture" Style="{StaticResource Win11Expander}" Grid.Row="1" Grid.Column="1" Margin="6,6,0,0">
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0" Margin="0,0,6,0">
+                                        <Label Content="Name" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" Margin="6,0,0,0">
+                                        <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
+                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                    </StackPanel>
+                                </Grid>
+                            <!-- New Admixture (completing the closing tag) -->
+                            </StackPanel>
+                        </Expander>
+                    </Grid>
+                </GroupBox>
+
+                <!-- Additional Properties Section -->
+                <GroupBox Header="Additional Properties" Style="{StaticResource Win11GroupBox}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Column="0" Margin="0,0,12,0">
+                            <Label Content="Slump Value (mm)" Style="{StaticResource Win11Label}"/>
+                            <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,12"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Margin="12,0,0,0">
+                            <Label Content="Strength Class" Style="{StaticResource Win11Label}"/>
+                            <ComboBox Style="{StaticResource Win11ComboBox}" Margin="0,0,0,12">
+                                <ComboBoxItem Content="C20/25"/>
+                                <ComboBoxItem Content="C25/30"/>
+                                <ComboBoxItem Content="C30/37"/>
+                                <ComboBoxItem Content="C35/45"/>
+                                <ComboBoxItem Content="C40/50"/>
+                                <ComboBoxItem Content="C45/55"/>
+                                <ComboBoxItem Content="C50/60"/>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,12,0">
+                            <Label Content="Exposure Class" Style="{StaticResource Win11Label}"/>
+                            <ComboBox Style="{StaticResource Win11ComboBox}" Margin="0,0,0,12">
+                                <ComboBoxItem Content="X0"/>
+                                <ComboBoxItem Content="XC1"/>
+                                <ComboBoxItem Content="XC2"/>
+                                <ComboBoxItem Content="XC3"/>
+                                <ComboBoxItem Content="XC4"/>
+                                <ComboBoxItem Content="XD1"/>
+                                <ComboBoxItem Content="XD2"/>
+                                <ComboBoxItem Content="XD3"/>
+                                <ComboBoxItem Content="XS1"/>
+                                <ComboBoxItem Content="XS2"/>
+                                <ComboBoxItem Content="XS3"/>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Grid.Column="1" Margin="12,0,0,0">
+                            <Label Content="Consistency Class" Style="{StaticResource Win11Label}"/>
+                            <ComboBox Style="{StaticResource Win11ComboBox}" Margin="0,0,0,12">
+                                <ComboBoxItem Content="S1"/>
+                                <ComboBoxItem Content="S2"/>
+                                <ComboBoxItem Content="S3"/>
+                                <ComboBoxItem Content="S4"/>
+                                <ComboBoxItem Content="S5"/>
+                            </ComboBox>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+
+                <!-- Notes Section -->
+                <GroupBox Header="Notes" Style="{StaticResource Win11GroupBox}">
+                    <StackPanel>
+                        <Label Content="Recipe Notes" Style="{StaticResource Win11Label}"/>
+                        <TextBox Style="{StaticResource Win11TextBox}" 
+                                 AcceptsReturn="True" 
+                                 TextWrapping="Wrap" 
+                                 Height="100"
+                                 VerticalScrollBarVisibility="Auto"
+                                 Margin="0,0,0,12"/>
+                        
+                        <Label Content="Special Instructions" Style="{StaticResource Win11Label}"/>
+                        <TextBox Style="{StaticResource Win11TextBox}" 
+                                 AcceptsReturn="True" 
+                                 TextWrapping="Wrap" 
+                                 Height="100"
+                                 VerticalScrollBarVisibility="Auto"
+                                 Margin="0,0,0,12"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Recipe Status Section -->
+                <GroupBox Header="Recipe Status" Style="{StaticResource Win11GroupBox}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Margin="0,0,12,0">
+                            <Label Content="Status" Style="{StaticResource Win11Label}"/>
+                            <ComboBox Style="{StaticResource Win11ComboBox}" Margin="0,0,0,12">
+                                <ComboBoxItem Content="Draft"/>
+                                <ComboBoxItem Content="Under Review"/>
+                                <ComboBoxItem Content="Approved"/>
+                                <ComboBoxItem Content="Active"/>
+                                <ComboBoxItem Content="Archived"/>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Margin="12,0,0,0">
+                            <Label Content="Approved By" Style="{StaticResource Win11Label}"/>
+                            <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,12"/>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+
+                <!-- Action Buttons -->
+                <Grid Margin="0,16,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Content="Delete Recipe" Grid.Column="0" HorizontalAlignment="Left" 
+                            Width="150" Style="{StaticResource Win11Button}" 
+                            Background="#f8d7da" Foreground="#721c24"/>
+
+                    <StackPanel Orientation="Horizontal" Grid.Column="1">
+                        <Button Content="Save as Draft" Margin="8,0" Width="150" Style="{StaticResource Win11Button}"/>
+                        <Button Content="Save and Approve" Margin="8,0" Width="150" Style="{StaticResource Win11Button}" 
+                                Background="#0078d4" Foreground="White"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
         </ScrollViewer>
-
-        <!-- Footer with Action Buttons -->
-        <Grid Grid.Row="2" Margin="0,15,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-
-            <TextBlock Text="Recipe Management System v1.0" VerticalAlignment="Center" Foreground="#606060"/>
-
-            <Button Content="Clear Form" Grid.Column="1" Style="{StaticResource Win11Button}" Padding="15,8" Margin="5,0"/>
-            <Button Content="Save Recipe" Grid.Column="2" Style="{StaticResource Win11Button}" Background="#0078d7" Foreground="White" Padding="15,8" Margin="5,0"/>
-            <Button Content="Load Recipe" Grid.Column="3" Style="{StaticResource Win11Button}" Padding="15,8" Margin="5,0"/>
-            <Button Content="Delete Recipe" Grid.Column="4" Style="{StaticResource Win11Button}" Background="#d83b01" Foreground="White" Padding="15,8" Margin="5,0"/>
-        </Grid>
     </Grid>
 </Page>
