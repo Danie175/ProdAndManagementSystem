@@ -18,6 +18,7 @@ namespace ProdAndManagementSystem.Views
             InitializeComponent();
             SetAddMode();
             LoadData();
+            txtCustomerRefCode.IsEnabled = false; // Disable the reference code text box
         }
 
         private void SetAddMode()
@@ -28,7 +29,13 @@ namespace ProdAndManagementSystem.Views
             ClearForm();
             txtCustomerId.IsEnabled = true;
         }
+        private void CustomerCodeGenerator()
+        {
+            string name = txtCustomerName.Text.Trim().ToLower();
+            string codeid = CodeIdGenerator.GenerateCodeId(name);
 
+            txtCustomerRefCode.Text = codeid;
+        }
         private void SetEditMode(Customer customer)
         {
             isEditMode = true;
@@ -39,6 +46,7 @@ namespace ProdAndManagementSystem.Views
             txtCustomerName.Text = customer.Customername ?? string.Empty;
             txtCustomerAddress.Text = customer.Customeradd ?? string.Empty;
             txtCustomerNumber.Text = customer.Customernumber ?? string.Empty;
+            txtCustomerRefCode.IsEnabled = false; // Disable the reference code text box
             txtCustomerId.IsEnabled = false;
         }
 
@@ -63,6 +71,9 @@ namespace ProdAndManagementSystem.Views
 
             using (JustDbContext context = new JustDbContext())
             {
+                string codeId = CodeIdGenerator.GenerateCodeId(name);
+                txtCustomerRefCode.Text = codeId;
+
                 try
                 {
                     if (isEditMode && currentCustomerId.HasValue)
@@ -101,6 +112,7 @@ namespace ProdAndManagementSystem.Views
                             Customername = name,
                             Customeradd = address,
                             Customernumber = number,
+                            CodeId = codeId,
                             Createdate = DateTime.Now,
                             Updatedate = DateTime.Now
                         };
@@ -112,6 +124,7 @@ namespace ProdAndManagementSystem.Views
 
                     LoadData();
                     SetAddMode();
+                    CustomerCodeGenerator();
                 }
                 catch (DbUpdateException ex)
                 {

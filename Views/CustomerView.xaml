@@ -185,7 +185,12 @@
                              TextWrapping="Wrap" Height="90" AcceptsReturn="True"/>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" Grid.Row="2" Margin="5,0,5,0"/>
+                <StackPanel Grid.Column="1" Grid.Row="2" Margin="5,0,5,0">
+                    <StackPanel Height="66" Width="395">
+                        <TextBlock Text="Customer Reference Code" FontSize="13" Margin="0,5,0,2"/>
+                        <TextBox x:Name="txtCustomerRefCode" Style="{StaticResource Win11TextBox}"/>
+                    </StackPanel>
+                </StackPanel>
 
                 <!-- Action Buttons -->
                 <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" 
@@ -223,6 +228,7 @@
                     <DataGridTextColumn Header="Customer Name" Binding="{Binding Customername}" Width="200"/>
                     <DataGridTextColumn Header="Phone Number" Binding="{Binding Customernumber}" Width="120"/>
                     <DataGridTextColumn Header="Address" Binding="{Binding Customeradd}" Width="250"/>
+                    <DataGridTextColumn Header="Ref ID" Binding="{Binding CodeId}" Width="100"/>
                     <DataGridTextColumn Header="Created Date" Binding="{Binding Createdate, StringFormat={}{0:dd/MM/yyyy}}" Width="110"/>
                     <DataGridTextColumn Header="Updated Date" Binding="{Binding Updatedate, StringFormat={}{0:dd/MM/yyyy}}" Width="110"/>
                 </DataGrid.Columns>

@@ -168,8 +168,7 @@
                     <TextBlock Text="Recipe Details" Style="{StaticResource Win11Header}"/>
 
                     <StackPanel Orientation="Horizontal" Grid.Column="1">
-                        <Button Content="Save" Margin="8,0" Style="{StaticResource Win11Button}" Width="100"/>
-                        <Button Content="Cancel" Margin="8,0" Style="{StaticResource Win11Button}" Width="100"/>
+                        <Button Content="Clear" Margin="8,0" Style="{StaticResource Win11Button}" Width="100" Click="btnClear_Click"/>
                     </StackPanel>
                 </Grid>
 
@@ -188,23 +187,17 @@
 
                         <StackPanel Grid.Column="0" Margin="0,0,12,0">
                             <Label Content="Recipe ID" Style="{StaticResource Win11Label}"/>
-                            <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,12"/>
+                            <TextBox x:Name="txtRecipeId" Style="{StaticResource Win11TextBox}" Margin="0,0,0,12"/>
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" Margin="12,0,0,0">
                             <Label Content="Recipe Name" Style="{StaticResource Win11Label}"/>
-                            <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,12"/>
+                            <TextBox x:Name="txtRecipeName" Style="{StaticResource Win11TextBox}" Margin="0,0,0,12"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,12,0">
-                            <Label Content="Created Date" Style="{StaticResource Win11Label}"/>
-                            <DatePicker Margin="0,0,0,12" FontFamily="Segoe UI" FontSize="13"/>
-                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,12,0"/>
 
-                        <StackPanel Grid.Row="1" Grid.Column="1" Margin="12,0,0,0">
-                            <Label Content="Last Updated Date" Style="{StaticResource Win11Label}"/>
-                            <DatePicker Margin="0,0,0,12" FontFamily="Segoe UI" FontSize="13"/>
-                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="1" Margin="12,0,0,0"/>
 
                         <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
                             <Label Content="Serial Number" Style="{StaticResource Win11Label}"/>
@@ -236,12 +229,12 @@
 
                                     <StackPanel Grid.Column="0" Margin="0,0,6,0">
                                         <Label Content="Name" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtAgg1"  Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
 
                                     <StackPanel Grid.Column="1" Margin="6,0,0,0">
                                         <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtAgg1STP" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>
@@ -258,12 +251,12 @@
 
                                     <StackPanel Grid.Column="0" Margin="0,0,6,0">
                                         <Label Content="Name" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtAgg2" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
 
                                     <StackPanel Grid.Column="1" Margin="6,0,0,0">
                                         <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtAgg2STP" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>
@@ -280,12 +273,12 @@
 
                                     <StackPanel Grid.Column="0" Margin="0,0,6,0">
                                         <Label Content="Name" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtAgg3" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
 
                                     <StackPanel Grid.Column="1" Margin="6,0,0,0">
                                         <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtAgg3STP" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>
@@ -302,12 +295,12 @@
 
                                     <StackPanel Grid.Column="0" Margin="0,0,6,0">
                                         <Label Content="Name" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtAgg4" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
 
                                     <StackPanel Grid.Column="1" Margin="6,0,0,0">
                                         <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtAgg4STP" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>
@@ -338,12 +331,12 @@
 
                                     <StackPanel Grid.Column="0" Margin="0,0,6,0">
                                         <Label Content="Name" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtCement1" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
 
                                     <StackPanel Grid.Column="1" Margin="6,0,0,0">
                                         <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtCement1STP" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>
@@ -360,12 +353,12 @@
 
                                     <StackPanel Grid.Column="0" Margin="0,0,6,0">
                                         <Label Content="Name" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtCement2" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
 
                                     <StackPanel Grid.Column="1" Margin="6,0,0,0">
                                         <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtCement2STP" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>
@@ -382,12 +375,12 @@
 
                                     <StackPanel Grid.Column="0" Margin="0,0,6,0">
                                         <Label Content="Name" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtCement3" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
 
                                     <StackPanel Grid.Column="1" Margin="6,0,0,0">
                                         <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtCement3STP" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>
@@ -404,12 +397,12 @@
 
                                     <StackPanel Grid.Column="0" Margin="0,0,6,0">
                                         <Label Content="Name" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtCement4" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
 
                                     <StackPanel Grid.Column="1" Margin="6,0,0,0">
                                         <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtCement4STP" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>
@@ -436,12 +429,12 @@
 
                                     <StackPanel Grid.Column="0" Margin="0,0,6,0">
                                         <Label Content="Name" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtWater1" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
 
                                     <StackPanel Grid.Column="1" Margin="6,0,0,0">
                                         <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtWater1STP" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>
@@ -458,12 +451,12 @@
 
                                     <StackPanel Grid.Column="0" Margin="0,0,6,0">
                                         <Label Content="Name" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtWater2" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
 
                                     <StackPanel Grid.Column="1" Margin="6,0,0,0">
                                         <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtWater2STP" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>
@@ -494,12 +487,12 @@
 
                                     <StackPanel Grid.Column="0" Margin="0,0,6,0">
                                         <Label Content="Name" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtAdmix1" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
 
                                     <StackPanel Grid.Column="1" Margin="6,0,0,0">
                                         <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtAdmix1STP" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>
@@ -516,12 +509,12 @@
 
                                     <StackPanel Grid.Column="0" Margin="0,0,6,0">
                                         <Label Content="Name" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtAdmix2" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
 
                                     <StackPanel Grid.Column="1" Margin="6,0,0,0">
                                         <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtAdmix2STP" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>
@@ -538,12 +531,12 @@
 
                                     <StackPanel Grid.Column="0" Margin="0,0,6,0">
                                         <Label Content="Name" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtAdmix3" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
 
                                     <StackPanel Grid.Column="1" Margin="6,0,0,0">
                                         <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtAdmix3STP" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>
@@ -560,12 +553,12 @@
 
                                     <StackPanel Grid.Column="0" Margin="0,0,6,0">
                                         <Label Content="Name" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtAdmixNew" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
 
                                     <StackPanel Grid.Column="1" Margin="6,0,0,0">
                                         <Label Content="STP Value" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
+                                        <TextBox x:Name="txtAdmixNewSTP" Style="{StaticResource Win11TextBox}" Margin="0,0,0,8"/>
                                     </StackPanel>
                                 </Grid>
                             <!-- New Admixture (completing the closing tag) -->
@@ -693,9 +686,9 @@
                             Background="#f8d7da" Foreground="#721c24"/>
 
                     <StackPanel Orientation="Horizontal" Grid.Column="1">
-                        <Button Content="Save as Draft" Margin="8,0" Width="150" Style="{StaticResource Win11Button}"/>
+                        <Button Content="Save as Draft" Margin="8,0" Width="150" Style="{StaticResource Win11Button}" Click="btnSaD_Click"/>
                         <Button Content="Save and Approve" Margin="8,0" Width="150" Style="{StaticResource Win11Button}" 
-                                Background="#0078d4" Foreground="White"/>
+                                Background="#0078d4" Foreground="White" Click="btnSaA_Click"/>
                     </StackPanel>
                 </Grid>
             </StackPanel>

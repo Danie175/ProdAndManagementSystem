@@ -31,10 +31,6 @@ public partial class Customer
     [StringLength(50)]
     public string? Customernumber { get; set; }
 
-    //[Column("SITENAME")]
-    //[StringLength(50)]
-    //public string? Sitename { get; set; }
-
     [Column("CODE_ID")]
     [StringLength(20)]
     public string? CodeId { get; set; }

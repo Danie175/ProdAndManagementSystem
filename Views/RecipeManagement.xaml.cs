@@ -24,5 +24,76 @@ namespace ProdAndManagementSystem.Views
         {
             InitializeComponent();
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+        private void ClearForm()
+        {
+            foreach (var control in LogicalTreeHelper.GetChildren(this))
+            {
+                ClearTextBoxes(control);
+            }
+        }
+
+        private void ClearTextBoxes(object parent)
+        {
+            if (parent is TextBox textBox)
+            {
+                textBox.Text = string.Empty;
+            }
+            else if (parent is Panel panel)
+            {
+                foreach (var child in panel.Children)
+                {
+                    ClearTextBoxes(child);
+                }
+            }
+            else if (parent is ContentControl contentControl)
+            {
+                ClearTextBoxes(contentControl.Content);
+            }
+            //else if (parent is Decorator decorator)
+            //{
+            //    ClearTextBoxes(decorator.Child);
+            //}
+            //else if (parent is ItemsControl itemsControl)
+            //{
+            //    foreach (var item in itemsControl.Items)
+            //    {
+            //        ClearTextBoxes(item);
+            //    }
+            //}
+        }
+
+        private void txtRecipeId_TextChanged(object sender, TextChangedEventArgs e)
+        {
+       
+        }
+
+        private void txtRecipeName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+        private void btnSaD_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnSaA_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnDel_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnClear_Click(object sender, RoutedEventArgs e)
+        {
+            ClearForm();
+        }
     }
 }
