@@ -368,28 +368,24 @@
                                          Text="{Binding CurrentBatch.Cycledate, UpdateSourceTrigger=PropertyChanged}"/>
 
                                 <TextBlock Text="Recipe Name" Style="{StaticResource FieldLabel}"/>
-                                <ComboBox Style="{StaticResource ModernComboBox}" 
+                                <ComboBox x:Name="Dropbox_RecipeName" Style="{StaticResource ModernComboBox}" 
                                           ItemsSource="{Binding RecipeList}" 
                                           SelectedItem="{Binding CurrentBatch.Recipename}"/>
 
                                 <TextBlock Text="Moisture Enable" Style="{StaticResource FieldLabel}"/>
-                                <TextBox Style="{StaticResource ModernTextBox}" 
-                                         Text="{Binding CurrentBatch.Moistureenable, UpdateSourceTrigger=PropertyChanged}"/>
-
+                                <ComboBox x:Name="Dropbox_MoistEna" Style="{StaticResource ModernComboBox}" 
+                                              ItemsSource="{Binding Moistureenable}" 
+                                              SelectedItem="{Binding CurrentBatch.Recipename}"/>
                                 <TextBlock Text="Order ID" Style="{StaticResource FieldLabel}"/>
-                                <ComboBox Style="{StaticResource ModernComboBox}" 
+                                <ComboBox x:Name="Dropbox_OrderId" Style="{StaticResource ModernComboBox}" 
                                           ItemsSource="{Binding OrderList}" 
                                           SelectedValue="{Binding CurrentBatch.Orderid}"
                                           DisplayMemberPath="Text"
                                           SelectedValuePath="Value"/>
 
                                 <TextBlock Text="Order Quantity" Style="{StaticResource FieldLabel}"/>
-                                <TextBox Style="{StaticResource ModernTextBox}" 
+                                <TextBox x:Name="txtOrderQnty" Style="{StaticResource ModernTextBox}" 
                                          Text="{Binding CurrentBatch.Orderquantity, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <TextBlock Text="Creation Date" Style="{StaticResource FieldLabel}"/>
-                                <DatePicker Style="{StaticResource ModernDatePicker}" 
-                                            SelectedDate="{Binding CurrentBatch.Createdate}"/>
 
                                 <!-- Form Buttons -->
                                 <StackPanel Orientation="Horizontal" Margin="0,20,0,0" HorizontalAlignment="Right">
