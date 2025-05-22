@@ -154,7 +154,7 @@ namespace ProdAndManagementSystem.Views
                     var customers = context.Customers.ToList();
                     dgCustomers.ItemsSource = customers;
                 }
-            }
+            }   
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading customer data: {ex.Message}", "Data Load Error", MessageBoxButton.OK, MessageBoxImage.Error);

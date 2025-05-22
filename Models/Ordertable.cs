@@ -36,7 +36,7 @@ public partial class Ordertable
     public string? Sitename { get; set; }
 
     [Column("RECIPEID")]
-    public int? Recipeid { get; set; }
+    public string? Recipeid { get; set; }
 
     [Column("RECIPENAME")]
     [StringLength(100)]

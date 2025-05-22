@@ -51,7 +51,7 @@ public partial class Cycledatum
     public int? ShiftNumber { get; set; }
 
     [Column("RECIPEID")]
-    public int? Recipeid { get; set; }
+    public string? Recipeid { get; set; }
 
     [Column("RECIPENAME")]
     [StringLength(100)]

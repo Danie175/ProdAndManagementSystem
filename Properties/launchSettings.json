@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "ProdAndManagementSystem": {
+      "commandName": "Project",
+      "nativeDebugging": true,
+      "sqlDebugging": false
+    }
+  }
+}

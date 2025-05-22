@@ -1,14 +1,6 @@
 ﻿using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MaterialDesignThemes.Wpf.Internal;
 using ProdAndManagementSystem.Data;
 using ProdAndManagementSystem.Views;
 namespace ProdAndManagementSystem
@@ -18,9 +10,12 @@ namespace ProdAndManagementSystem
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly JustDbContext _context = new JustDbContext();
         public MainWindow()
         {
+
             InitializeComponent();
+            LoadCustomerCount();
         }
 
         private void btnCustomer_Click(object sender, RoutedEventArgs e)
@@ -32,6 +27,19 @@ namespace ProdAndManagementSystem
             if (e.Content != null)
             {
                 DefaultDashboard.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void LoadCustomerCount()
+        {
+            try
+            {
+                int count = _context.Customers.Count();
+                txtTotalCustomers.Text = count.ToString();
+            }
+            catch (Exception)
+            {
+                txtTotalCustomers.Text = "Error loading count";
             }
         }
         private void btnOrder_Click(object sender, RoutedEventArgs e)

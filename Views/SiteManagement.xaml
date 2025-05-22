@@ -132,98 +132,100 @@
             </Setter>
         </Style>
     </Page.Resources>
+     
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
 
-    <Grid Margin="6,25,185,15">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <!-- Header -->
-        <StackPanel Grid.Row="0" Margin="0,0,0,15">
-            <TextBlock Text="Site Management" FontSize="24" FontWeight="SemiBold" Foreground="#202020"/>
-            <TextBlock Text="Add, edit, and manage site information" FontSize="14" Foreground="#505050" Margin="0,5,0,0"/>
-            <Separator Margin="0,15,0,0" Background="#e0e0e0"/>
-        </StackPanel>
-
-        <!-- Customer Input Form -->
-        <GroupBox Grid.Row="1" Header="Site Information" Style="{StaticResource Win11GroupBox}">
-            <Grid Margin="5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <!-- Left Column -->
-                <StackPanel Grid.Column="0" Grid.Row="0" Margin="5,0,15,0">
-                    <TextBlock Text="Site ID" FontSize="13" Margin="0,5,0,2"/>
-                    <TextBox x:Name="txtSiteId" Style="{StaticResource Win11TextBox}"/>
-                </StackPanel>
-
-                <StackPanel Grid.Column="0" Grid.Row="1" Margin="5,0,15,0">
-                    <TextBlock Text="Site Address" FontSize="13" Margin="0,5,0,2"/>
-                    <TextBox x:Name="txtAddressSite" Style="{StaticResource Win11TextBox}"/>
-                </StackPanel>
-
-                <StackPanel Grid.Column="0" Grid.Row="2" Margin="5,0,15,0">
-                    <TextBlock Text="Site Number" FontSize="13" Margin="0,5,0,2"/>
-                    <TextBox x:Name="txtNumberSite" Style="{StaticResource Win11TextBox}"/>
-                </StackPanel>
-                
-                <StackPanel Grid.Column="1" Grid.Row="0" Margin="5,0,15,0">
-                    <TextBlock Text="Site Name" FontSize="13" Margin="0,5,0,2"/>
-                    <TextBox x:Name="txtSiteName" Style="{StaticResource Win11TextBox}"/>
-                </StackPanel>
-                <!-- Action Buttons -->
-                <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" 
-                          Orientation="Horizontal" HorizontalAlignment="Left" Margin="5,15,0,10">
-                    <Button x:Name="SitebtnSave" Content="Save" Style="{StaticResource Win11PrimaryButton}" Width="100" Click="btnSave_Click"/>
-                    <Button x:Name="SitebtnDelete" Content="Delete" Style="{StaticResource Win11Button}" Width="100" Click="btnDelete_Click"/>
-                    <Button x:Name="SitebtnClear" Content="Clear" Style="{StaticResource Win11Button}" Width="100" Click="btnClear_Click"/>
-                </StackPanel>
-
-            </Grid>
-        </GroupBox>
-
-        <!-- Customer Data Grid -->
-        <Grid Grid.Row="2" Margin="0,10,0,0">
+        <Grid Margin="6,25,185,15">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- Search Box -->
-            <Grid Grid.Row="0" Margin="0,0,0,10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <TextBox x:Name="txtSiteSearch" Grid.Column="0" Style="{StaticResource Win11TextBox}" 
+            <!-- Header -->
+            <StackPanel Grid.Row="0" Margin="0,0,0,15">
+                <TextBlock Text="Site Management" FontSize="24" FontWeight="SemiBold" Foreground="#202020"/>
+                <TextBlock Text="Add, edit, and manage site information" FontSize="14" Foreground="#505050" Margin="0,5,0,0"/>
+                <Separator Margin="0,15,0,0" Background="#e0e0e0"/>
+            </StackPanel>
+
+            <!-- Customer Input Form -->
+            <GroupBox Grid.Row="1" Header="Site Information" Style="{StaticResource Win11GroupBox}">
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Left Column -->
+                    <StackPanel Grid.Column="0" Grid.Row="0" Margin="5,0,15,0">
+                        <TextBlock Text="Site ID" FontSize="13" Margin="0,5,0,2"/>
+                        <TextBox x:Name="txtSiteId" Style="{StaticResource Win11TextBox}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="0" Grid.Row="1" Margin="5,0,15,0">
+                        <TextBlock Text="Site Address" FontSize="13" Margin="0,5,0,2"/>
+                        <TextBox x:Name="txtAddressSite" Style="{StaticResource Win11TextBox}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="0" Grid.Row="2" Margin="5,0,15,0">
+                        <TextBlock Text="Site Number" FontSize="13" Margin="0,5,0,2"/>
+                        <TextBox x:Name="txtNumberSite" Style="{StaticResource Win11TextBox}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Grid.Row="0" Margin="5,0,15,0">
+                        <TextBlock Text="Site Name" FontSize="13" Margin="0,5,0,2"/>
+                        <TextBox x:Name="txtSiteName" Style="{StaticResource Win11TextBox}"/>
+                    </StackPanel>
+                    <!-- Action Buttons -->
+                    <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" 
+                          Orientation="Horizontal" HorizontalAlignment="Left" Margin="5,15,0,10">
+                        <Button x:Name="SitebtnSave" Content="Save" Style="{StaticResource Win11PrimaryButton}" Width="100" Click="btnSave_Click"/>
+                        <Button x:Name="SitebtnDelete" Content="Delete" Style="{StaticResource Win11Button}" Width="100" Click="btnDelete_Click"/>
+                        <Button x:Name="SitebtnClear" Content="Clear" Style="{StaticResource Win11Button}" Width="100" Click="btnClear_Click"/>
+                    </StackPanel>
+
+                </Grid>
+            </GroupBox>
+
+            <!-- Customer Data Grid -->
+            <Grid Grid.Row="2" Margin="0,10,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Search Box -->
+                <Grid Grid.Row="0" Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="txtSiteSearch" Grid.Column="0" Style="{StaticResource Win11TextBox}" 
                           Margin="5,0" TextChanged="txtSiteSearch_TextChanged"/>
-                <Button x:Name="btnSearch" Grid.Column="1" Content="Search" 
+                    <Button x:Name="btnSearch" Grid.Column="1" Content="Search" 
                         Style="{StaticResource Win11Button}" Width="100" Margin="5,0" Click="btnSiteSearch_Click"/>
+                </Grid>
+
+                <!-- Customer List -->
+                <DataGrid x:Name="dgSite" Grid.Row="1" Style="{StaticResource Win11DataGrid}" Margin="5,0" SelectionChanged="dgSite_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Site ID" Binding="{Binding Siteid}" Width="70"/>
+                        <DataGridTextColumn Header="Site Name" Binding="{Binding Sitename}" Width="200"/>
+                        <DataGridTextColumn Header="Site Number" Binding="{Binding Sitenumber}" Width="120"/>
+                        <DataGridTextColumn Header="Site Address" Binding="{Binding Siteadd}" Width="250"/>
+                        <DataGridTextColumn Header="Created Date" Binding="{Binding Createdate, StringFormat={}{0:dd/MM/yyyy}}" Width="110"/>
+                        <DataGridTextColumn Header="Updated Date" Binding="{Binding Updatedate, StringFormat={}{0:dd/MM/yyyy}}" Width="110"/>
+                    </DataGrid.Columns>
+                </DataGrid>
             </Grid>
-
-            <!-- Customer List -->
-            <DataGrid x:Name="dgSite" Grid.Row="1" Style="{StaticResource Win11DataGrid}" Margin="5,0" SelectionChanged="dgSite_SelectionChanged">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Site ID" Binding="{Binding Siteid}" Width="70"/>
-                    <DataGridTextColumn Header="Site Name" Binding="{Binding Sitename}" Width="200"/>
-                    <DataGridTextColumn Header="Site Number" Binding="{Binding Sitenumber}" Width="120"/>
-                    <DataGridTextColumn Header="Site Address" Binding="{Binding Siteadd}" Width="250"/>
-                    <DataGridTextColumn Header="Created Date" Binding="{Binding Createdate, StringFormat={}{0:dd/MM/yyyy}}" Width="110"/>
-                    <DataGridTextColumn Header="Updated Date" Binding="{Binding Updatedate, StringFormat={}{0:dd/MM/yyyy}}" Width="110"/>
-                </DataGrid.Columns>
-            </DataGrid>
         </Grid>
-    </Grid>
-
+    </ScrollViewer>
 </Page>

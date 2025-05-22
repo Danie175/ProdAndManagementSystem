@@ -307,11 +307,13 @@
                                         <TextBlock Text="Customers" FontSize="16" FontWeight="SemiBold" 
                                                   Foreground="#333333" VerticalAlignment="Center" Margin="14,0,0,0"/>
                                     </StackPanel>
-
+                                    
                                     <StackPanel Grid.Row="1" Margin="0,0,0,15">
                                         <TextBlock Text="Total Customers" FontSize="13" Foreground="#777777"/>
-                                        <TextBlock Text="0" FontSize="28" FontWeight="SemiBold" Foreground="#333333" Margin="0,10,0,0"/>
+                                        <TextBlock x:Name="txtTotalCustomers" Text="0" FontSize="28" FontWeight="SemiBold" Foreground="#333333" Margin="0,10,0,0"/>
                                     </StackPanel>
+
+
 
                                     <Button Grid.Row="2" Style="{StaticResource ActionButtonStyle}" Content="Manage Customers" Click="btnCustomer_Click"/>
                                 </Grid>

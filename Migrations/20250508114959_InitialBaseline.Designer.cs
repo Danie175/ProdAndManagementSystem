@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProdAndManagementSystem.Data;
 
@@ -11,9 +12,11 @@ using ProdAndManagementSystem.Data;
 namespace Prod_ManagementSystem.Migrations
 {
     [DbContext(typeof(JustDbContext))]
-    partial class JustDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250508114959_InitialBaseline")]
+    partial class InitialBaseline
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -116,11 +119,6 @@ namespace Prod_ManagementSystem.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Srno"));
 
-                    b.Property<string>("CodeId")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)")
-                        .HasColumnName("CODE_ID");
-
                     b.Property<DateTime?>("Createdate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
@@ -157,10 +155,6 @@ namespace Prod_ManagementSystem.Migrations
                         .HasName("PK__CUSTOMER__A091E37AF17AA5C1");
 
                     b.HasIndex(new[] { "Customername" }, "IX_CUSTOMER_NAME");
-
-                    b.HasIndex(new[] { "CodeId" }, "UQ_CUSTOMER_CODEID")
-                        .IsUnique()
-                        .HasFilter("[CODE_ID] IS NOT NULL");
 
                     b.HasIndex(new[] { "Customerid" }, "UQ__CUSTOMER__61DBD789FDE27297")
                         .IsUnique();
@@ -480,8 +474,8 @@ namespace Prod_ManagementSystem.Migrations
                         .HasColumnType("float")
                         .HasColumnName("PERCYCLEQUANTITY");
 
-                    b.Property<string>("Recipeid")
-                        .HasColumnType("nvarchar(450)")
+                    b.Property<int?>("Recipeid")
+                        .HasColumnType("int")
                         .HasColumnName("RECIPEID");
 
                     b.Property<string>("Recipename")
@@ -1088,8 +1082,8 @@ namespace Prod_ManagementSystem.Migrations
                         .HasColumnType("float")
                         .HasColumnName("PENDINGQUANTITY");
 
-                    b.Property<string>("Recipeid")
-                        .HasColumnType("nvarchar(450)")
+                    b.Property<int?>("Recipeid")
+                        .HasColumnType("int")
                         .HasColumnName("RECIPEID");
 
                     b.Property<string>("Recipename")
@@ -1270,9 +1264,8 @@ namespace Prod_ManagementSystem.Migrations
                         .HasColumnName("CREATEDATE")
                         .HasDefaultValueSql("(getdate())");
 
-                    b.Property<string>("Id")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)")
+                    b.Property<int>("Id")
+                        .HasColumnType("int")
                         .HasColumnName("ID");
 
                     b.Property<string>("Recipename")
@@ -1280,10 +1273,6 @@ namespace Prod_ManagementSystem.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)")
                         .HasColumnName("RECIPENAME");
-
-                    b.Property<string>("SelRefId")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Serial Ref ID");
 
                     b.Property<DateTime?>("Updatedate")
                         .ValueGeneratedOnAdd()

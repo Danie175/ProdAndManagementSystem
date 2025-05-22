@@ -30,11 +30,6 @@ namespace ProdAndManagementSystem.Views
 
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void NewBchBtn_Click(object sender, RoutedEventArgs e)
         {
 
@@ -151,6 +146,16 @@ namespace ProdAndManagementSystem.Views
         }
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void ComboBox_Drop(object sender, DragEventArgs e)
+        {
+
+        }
+
+        private void DataGrid_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
 
         }

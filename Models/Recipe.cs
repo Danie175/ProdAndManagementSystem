@@ -16,9 +16,12 @@ public partial class Recipe
     public int Srno { get; set; }
 
     [Column("ID")]
-    public int Id { get; set; }
+    public string? Id { get; set; }
 
-    [Column("RECIPENAME")]
+    [Column("Serial Ref ID")]
+    public string? SelRefId { get; set; }
+
+    [Column("RECIPENAME")] 
     [StringLength(100)]
     public string Recipename { get; set; } = null!;
 

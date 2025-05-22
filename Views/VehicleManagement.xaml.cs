@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Microsoft.EntityFrameworkCore;
 using ProdAndManagementSystem.Views;
+using System.Data;
 namespace ProdAndManagementSystem.Views
 {
     public partial class VehicleManagement : Page
@@ -17,61 +18,107 @@ namespace ProdAndManagementSystem.Views
             JustDbContext context = new JustDbContext();
             InitializeComponent();
             _context = context;
-            LoadVehicles();
+            LoadTransportGrid();
         }
 
-        private void LoadVehicles()
+        private void LoadTransportGrid()
         {
-            dgTransport.ItemsSource = _context.Vehicles.ToList();
-            //dgTransport.ItemsSource = _context.Drivers.ToList();
+            try
+            {
+                DataTable table = new DataTable();
+
+                table.Columns.Add("Vehicleid");
+                table.Columns.Add("Vehiclenumber");
+                table.Columns.Add("Drivername");
+                table.Columns.Add("Drivernumber");
+                table.Columns.Add("Driverid");
+                table.Columns.Add("Createdate", typeof(DateTime));
+                table.Columns.Add("Updatedate", typeof(DateTime));
+
+                var vehicles = _context.Vehicles.ToList();
+                var drivers = _context.Drivers.ToList();
+
+                int rowCount = Math.Max(vehicles.Count, drivers.Count);
+
+                for (int i = 0; i < rowCount; i++)
+                {
+                    var vehicle = i < vehicles.Count ? vehicles[i] : null;
+                    var driver = i < drivers.Count ? drivers[i] : null;
+
+                    table.Rows.Add(
+                        vehicle?.Vehicleid.ToString() ?? "",
+                        vehicle?.Vehiclenumber ?? "",
+                        driver?.Drivername.ToString() ?? "",
+                        driver?.Drivernumber.ToString() ?? "",
+                        driver?.Driverid.ToString() ?? "",
+                        vehicle?.Createdate ?? driver?.Createdate ?? DateTime.MinValue,
+                        vehicle?.Updatedate ?? driver?.Updatedate ?? DateTime.MinValue
+                    );
+                }
+
+                dgTransport.ItemsSource = table.DefaultView;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to load transport data: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var vehicle = new Vehicle
+                // Parse IDs safely
+                if (!int.TryParse(txtvehId.Text, out int vehicleId) ||
+                    !int.TryParse(txtdrvid.Text, out int driverId))
                 {
-                    Vehicleid = int.Parse(txtvehId.Text),
-                    Vehiclenumber = txtvehnum.Text,
-                    Createdate = DateTime.Now,
-                    Updatedate = DateTime.Now
-                };
+                    MessageBox.Show("Invalid ID values.");
+                    return;
+                }
 
-                var driver = new Driver 
+                // Get existing records from DB
+                var vehicle = _context.Vehicles.FirstOrDefault(v => v.Vehicleid == vehicleId);
+                var driver = _context.Drivers.FirstOrDefault(d => d.Driverid == driverId);
+
+                if (vehicle == null || driver == null)
                 {
-                    Driverid = int.Parse(txtdrvid.Text),
-                    Drivername = txtdriver.Text,
-                    Drivernumber = txtdrccont.Text,
-                    Createdate = DateTime.Now,
-                    Updatedate = DateTime.Now
-                };
+                    MessageBox.Show("Vehicle or Driver not found.");
+                    return;
+                }
 
-                _context.Vehicles.Add(vehicle);
-                _context.Drivers.Add(driver);
+                // Update values
+                vehicle.Vehiclenumber = txtvehnum.Text;
+                vehicle.Updatedate = DateTime.Now;
+
+                driver.Drivername = txtdriver.Text;
+                driver.Drivernumber = txtdrccont.Text;
+                driver.Updatedate = DateTime.Now;
+
+                // No need to call Add(), because we're modifying existing tracked entities
                 _context.SaveChanges();
 
-                MessageBox.Show("Saved successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-
+                MessageBox.Show("Record updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 ClearForm();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}", "Save Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Update failed: {ex.Message}\n{ex.InnerException?.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
 
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
             if (dgTransport.SelectedItem is Vehicle selectedVehicle)
             {
+
                 var confirm = MessageBox.Show("Are you sure you want to delete this vehicle?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (confirm == MessageBoxResult.Yes)
                 {
                     _context.Vehicles.Remove(selectedVehicle);
                     _context.SaveChanges();
-                    LoadVehicles();
+                    LoadTransportGrid();
                     ClearForm();
                 }
             }
@@ -97,10 +144,23 @@ namespace ProdAndManagementSystem.Views
 
         private void dgTransport_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (dgTransport.SelectedItem is Vehicle selectedVehicle)
+
+            if (dgTransport.SelectedItem is DataRowView row)
             {
-                //tx.Text = selectedVehicle.Vehiclenumber;
-                LoadVehicles();
+                string driverName = row["Drivername"]?.ToString();
+                string driverNumber = row["Drivernumber"]?.ToString();
+                string vehicleNumber = row["Vehiclenumber"]?.ToString();
+                string driverId = row["Driverid"]?.ToString();
+                string vehicleId = row["Vehicleid"]?.ToString();
+
+                txtvehId.Text = vehicleId;
+                txtvehnum.Text = vehicleNumber;
+                txtdrvid.Text = driverId;
+                txtdriver.Text = driverName;
+                txtdrccont.Text = driverNumber;
+
+                BtnSave.Content = "Update";
+                //MessageBox.Show($"Selected: {driverName} driving {vehicleNumber}");
             }
         }
 

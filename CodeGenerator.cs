@@ -3,10 +3,10 @@
     public static string GenerateCodeId(string fullName)
     {
         //if (string.IsNullOrWhiteSpace(fullName))
-            //return "cus-xx-0000";
+        //    return "cus-xx-0000";
 
         var parts = fullName.Trim().ToLower().Split(' ', StringSplitOptions.RemoveEmptyEntries);
-        string initials = string.Join("", parts.Select(w => w[0])); // 'dl'
+        string initials = string.Join("", parts.Select(w => w[0]));
         string firstName = parts[0];
 
         int numeric = ConvertFirstNameToNumber(firstName);

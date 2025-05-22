@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProdAndManagementSystem.Data;
 
@@ -11,9 +12,11 @@ using ProdAndManagementSystem.Data;
 namespace Prod_ManagementSystem.Migrations
 {
     [DbContext(typeof(JustDbContext))]
-    partial class JustDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250514102812_UpdateIdinRecipe")]
+    partial class UpdateIdinRecipe
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1280,10 +1283,6 @@ namespace Prod_ManagementSystem.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)")
                         .HasColumnName("RECIPENAME");
-
-                    b.Property<string>("SelRefId")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Serial Ref ID");
 
                     b.Property<DateTime?>("Updatedate")
                         .ValueGeneratedOnAdd()

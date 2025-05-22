@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProdAndManagementSystem.Data;
 
@@ -11,9 +12,11 @@ using ProdAndManagementSystem.Data;
 namespace Prod_ManagementSystem.Migrations
 {
     [DbContext(typeof(JustDbContext))]
-    partial class JustDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250515051102_AddedSelRefIDToDatabase")]
+    partial class AddedSelRefIDToDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -90,6 +90,23 @@
             <Setter Property="Padding" Value="0,4"/>
         </Style>
 
+        <Style x:Key="Win11DataGrid" TargetType="DataGrid">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#e0e0e0"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="AlternatingRowBackground" Value="#f9f9f9"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#f0f0f0"/>
+            <Setter Property="VerticalGridLinesBrush" Value="#f0f0f0"/>
+            <Setter Property="RowHeaderWidth" Value="0"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="CanUserDeleteRows" Value="False"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="SelectionUnit" Value="FullRow"/>
+        </Style>
+
         <Style x:Key="Win11GroupBox" TargetType="GroupBox">
             <Setter Property="Margin" Value="0,12,0,8"/>
             <Setter Property="Padding" Value="12,8"/>
@@ -200,8 +217,8 @@
                         <StackPanel Grid.Row="1" Grid.Column="1" Margin="12,0,0,0"/>
 
                         <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-                            <Label Content="Serial Number" Style="{StaticResource Win11Label}"/>
-                            <TextBox Style="{StaticResource Win11TextBox}" Margin="0,0,0,12"/>
+                            <Label Content="Serial Reference ID" Style="{StaticResource Win11Label}"/>
+                            <TextBox x:Name="txtSelRefID" Style="{StaticResource Win11TextBox}" Margin="0,0,0,12" IsReadOnly="True" TextChanged="txtSelRefID_TextChanged"/>
                         </StackPanel>
                     </Grid>
                 </GroupBox>
@@ -568,7 +585,7 @@
                 </GroupBox>
 
                 <!-- Additional Properties Section -->
-                <GroupBox Header="Additional Properties" Style="{StaticResource Win11GroupBox}">
+                <GroupBox Header="Additional Properties" Style="{StaticResource Win11GroupBox}" Visibility="Collapsed">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -628,25 +645,6 @@
                 </GroupBox>
 
                 <!-- Notes Section -->
-                <GroupBox Header="Notes" Style="{StaticResource Win11GroupBox}">
-                    <StackPanel>
-                        <Label Content="Recipe Notes" Style="{StaticResource Win11Label}"/>
-                        <TextBox Style="{StaticResource Win11TextBox}" 
-                                 AcceptsReturn="True" 
-                                 TextWrapping="Wrap" 
-                                 Height="100"
-                                 VerticalScrollBarVisibility="Auto"
-                                 Margin="0,0,0,12"/>
-                        
-                        <Label Content="Special Instructions" Style="{StaticResource Win11Label}"/>
-                        <TextBox Style="{StaticResource Win11TextBox}" 
-                                 AcceptsReturn="True" 
-                                 TextWrapping="Wrap" 
-                                 Height="100"
-                                 VerticalScrollBarVisibility="Auto"
-                                 Margin="0,0,0,12"/>
-                    </StackPanel>
-                </GroupBox>
 
                 <!-- Recipe Status Section -->
                 <GroupBox Header="Recipe Status" Style="{StaticResource Win11GroupBox}">
@@ -673,6 +671,19 @@
                         </StackPanel>
                     </Grid>
                 </GroupBox>
+                
+                <GroupBox Header="Datagrid" Style="{StaticResource Win11GroupBox}">
+                    <Grid>
+                        <DataGrid x:Name="dgRecipe" Grid.Row="1" Style="{StaticResource Win11DataGrid}" Margin="5,0" SelectionChanged="dgRecipe_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Serial Reference ID" Binding="{Binding SelRefId}" Width="*"/>
+                                <DataGridTextColumn Header="Recipe Name" Binding="{Binding Recipename}" Width="*"/>
+                                <DataGridTextColumn Header="Recipe ID" Binding="{Binding Id}" Width="*"/>
+                                <DataGridTextColumn Header="Created Date" Binding="{Binding Createdate}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </GroupBox>
 
                 <!-- Action Buttons -->
                 <Grid Margin="0,16,0,0">
@@ -681,13 +692,13 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <Button Content="Delete Recipe" Grid.Column="0" HorizontalAlignment="Left" 
+                    <Button x:Name="btnDelete" Content="Delete Recipe" Grid.Column="0" HorizontalAlignment="Left" 
                             Width="150" Style="{StaticResource Win11Button}" 
-                            Background="#f8d7da" Foreground="#721c24"/>
+                            Background="#f8d7da" Foreground="#721c24" Click="btnDel_Click"/>
 
                     <StackPanel Orientation="Horizontal" Grid.Column="1">
                         <Button Content="Save as Draft" Margin="8,0" Width="150" Style="{StaticResource Win11Button}" Click="btnSaD_Click"/>
-                        <Button Content="Save and Approve" Margin="8,0" Width="150" Style="{StaticResource Win11Button}" 
+                        <Button x:Name="btnSave" Content="Save and Approve" Margin="8,0" Width="150" Style="{StaticResource Win11Button}" 
                                 Background="#0078d4" Foreground="White" Click="btnSaA_Click"/>
                     </StackPanel>
                 </Grid>

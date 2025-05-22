@@ -4,108 +4,258 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProdAndManagementSystem.Views"
-      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="768" d:DesignWidth="1280"
       Title="Order Management">
 
     <Page.Resources>
-        <!-- Windows 11 inspired styles -->
-        <Style x:Key="Win11Button" TargetType="Button">
-            <Setter Property="Background" Value="#f0f0f0"/>
-            <Setter Property="Foreground" Value="#202020"/>
-            <Setter Property="BorderBrush" Value="#e0e0e0"/>
+        <!-- Modern Color Palette -->
+        <SolidColorBrush x:Key="PrimaryColor" Color="#2563EB"/>
+        <SolidColorBrush x:Key="PrimaryHoverColor" Color="#1D4ED8"/>
+        <SolidColorBrush x:Key="PrimaryPressedColor" Color="#1E40AF"/>
+        <SolidColorBrush x:Key="SecondaryColor" Color="#64748B"/>
+        <SolidColorBrush x:Key="SuccessColor" Color="#10B981"/>
+        <SolidColorBrush x:Key="DangerColor" Color="#EF4444"/>
+        <SolidColorBrush x:Key="WarningColor" Color="#F59E0B"/>
+        <SolidColorBrush x:Key="BackgroundColor" Color="#FAFAFA"/>
+        <SolidColorBrush x:Key="SurfaceColor" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="BorderColor" Color="#E5E7EB"/>
+        <SolidColorBrush x:Key="TextPrimaryColor" Color="#111827"/>
+        <SolidColorBrush x:Key="TextSecondaryColor" Color="#6B7280"/>
+
+        <!-- Enhanced Button Styles -->
+        <Style x:Key="ModernButton" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource SurfaceColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimaryColor}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="16,8"/>
+            <Setter Property="Padding" Value="16,10"/>
             <Setter Property="FontSize" Value="14"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <!--   <Setter Property="CornerRadius" Value="4"/> -->
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="4">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center"
+                                              Margin="{TemplateBinding Padding}"/>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#F3F4F6"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource PrimaryColor}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#E5E7EB"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#F3F4F6"/>
+                                <Setter Property="Foreground" Value="{StaticResource TextSecondaryColor}"/>
+                                <Setter Property="BorderBrush" Value="#E5E7EB"/>
+                                <Setter Property="Cursor" Value="Arrow"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#e9e9e9"/>
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="#dadada"/>
-                </Trigger>
-            </Style.Triggers>
         </Style>
 
-        <Style x:Key="Win11PrimaryButton" TargetType="Button" BasedOn="{StaticResource Win11Button}">
-            <Setter Property="Background" Value="#0078d4"/>
+        <Style x:Key="PrimaryButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
+            <Setter Property="Background" Value="{StaticResource PrimaryColor}"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="#0078d4"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#106ebe"/>
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="#005a9e"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style x:Key="Win11TextBox" TargetType="TextBox">
-            <Setter Property="Background" Value="#ffffff"/>
-            <Setter Property="Foreground" Value="#202020"/>
-            <Setter Property="BorderBrush" Value="#d1d1d1"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="8,6"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Height" Value="36"/>
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryColor}"/>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="TextBox">
+                    <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="4">
-                            <ScrollViewer x:Name="PART_ContentHost" Focusable="False" 
-                                          Margin="{TemplateBinding Padding}"/>
+                                CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center"
+                                              Margin="{TemplateBinding Padding}"/>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource PrimaryHoverColor}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="{StaticResource PrimaryPressedColor}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#9CA3AF"/>
+                                <Setter Property="BorderBrush" Value="#9CA3AF"/>
+                                <Setter Property="Cursor" Value="Arrow"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="BorderBrush" Value="#0078d4"/>
-                </Trigger>
-                <Trigger Property="IsFocused" Value="True">
-                    <Setter Property="BorderBrush" Value="#0078d4"/>
-                    <Setter Property="BorderThickness" Value="2"/>
-                </Trigger>
-            </Style.Triggers>
         </Style>
 
-        <Style x:Key="Win11ComboBox" TargetType="ComboBox">
-            <Setter Property="Background" Value="#ffffff"/>
-            <Setter Property="Foreground" Value="#202020"/>
-            <Setter Property="BorderBrush" Value="#d1d1d1"/>
+        <Style x:Key="DangerButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
+            <Setter Property="Background" Value="{StaticResource DangerColor}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource DangerColor}"/>
+        </Style>
+
+        <Style x:Key="SuccessButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
+            <Setter Property="Background" Value="{StaticResource SuccessColor}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource SuccessColor}"/>
+        </Style>
+
+        <Style x:Key="IconButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+
+        <!-- Enhanced TextBox Style -->
+       <Style x:Key="MordenTextBox" TargetType="TextBox">
+    <Setter Property="Background" Value="#f9f9f9"/>
+    <Setter Property="Foreground" Value="#202020"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="BorderBrush" Value="#d4d4d4"/>
+    <Setter Property="Padding" Value="8,6"/>
+    <Setter Property="FontFamily" Value="Segoe UI"/>
+    <Setter Property="FontSize" Value="13"/>
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="TextBox">
+                <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="4">
+                    <ScrollViewer x:Name="PART_ContentHost"/>
+                </Border>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="BorderBrush" Value="#acacac"/>
+                    </Trigger>
+                    <Trigger Property="IsFocused" Value="True">
+                        <Setter Property="BorderBrush" Value="#0078d4"/>
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+
+        <!-- Enhanced ComboBox Style -->
+        <Style x:Key="ModernComboBox" TargetType="ComboBox">
+            <Setter Property="Background" Value="{StaticResource SurfaceColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimaryColor}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="Padding" Value="12,8"/>
             <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Height" Value="36"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="10">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ContentPresenter Grid.Column="0" 
+                                                      Margin="{TemplateBinding Padding}"
+                                                      VerticalAlignment="Center"
+                                                      Content="{TemplateBinding SelectionBoxItem}"
+                                                      ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"/>
+                                    <ToggleButton Grid.Column="1" 
+              Name="ToggleButton"
+              Focusable="False"
+              ClickMode="Release"
+              IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+              Width="30"
+              Height="30"
+              Background="Transparent"
+              BorderThickness="0">
+    <ToggleButton.Style>
+        <Style TargetType="ToggleButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border x:Name="Border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="10"
+                                BorderThickness="0">
+                            <Path Data="M7 10l5 5 5-5z" 
+                                  Fill="{StaticResource TextSecondaryColor}"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#D6EFFF"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#CCE4FF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </ToggleButton.Style>
+</ToggleButton>
+
+                                </Grid>
+                            </Border>
+                            <Popup Name="PART_Popup"
+                                   Placement="Bottom"
+                                   IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   AllowsTransparency="True"
+                                   PopupAnimation="Slide">
+                                <Border Background="{StaticResource SurfaceColor}"
+                                        BorderBrush="{StaticResource BorderColor}"
+                                        BorderThickness="1"
+                                        CornerRadius="6"
+                                        MinWidth="{TemplateBinding ActualWidth}"
+                                        MaxHeight="200">
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                  HorizontalScrollBarVisibility="Disabled">
+                                        <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="{StaticResource PrimaryColor}"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="{StaticResource PrimaryColor}"/>
+                                <Setter Property="BorderThickness" Value="2"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
-        <Style x:Key="Win11DataGrid" TargetType="DataGrid">
-            <Setter Property="Background" Value="#ffffff"/>
-            <Setter Property="BorderBrush" Value="#d1d1d1"/>
+        <!-- Enhanced DataGrid Styles -->
+        <Style x:Key="ModernDataGrid" TargetType="DataGrid">
+            <Setter Property="Background" Value="{StaticResource SurfaceColor}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="RowBackground" Value="#ffffff"/>
-            <Setter Property="AlternatingRowBackground" Value="#f9f9f9"/>
-            <Setter Property="HorizontalGridLinesBrush" Value="#e6e6e6"/>
-            <Setter Property="VerticalGridLinesBrush" Value="#e6e6e6"/>
+            <Setter Property="RowBackground" Value="{StaticResource SurfaceColor}"/>
+            <Setter Property="AlternatingRowBackground" Value="#F8FAFC"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource BorderColor}"/>
+            <Setter Property="VerticalGridLinesBrush" Value="{StaticResource BorderColor}"/>
             <Setter Property="HeadersVisibility" Value="Column"/>
             <Setter Property="CanUserAddRows" Value="False"/>
             <Setter Property="CanUserDeleteRows" Value="False"/>
@@ -113,39 +263,138 @@
             <Setter Property="AutoGenerateColumns" Value="False"/>
             <Setter Property="SelectionMode" Value="Single"/>
             <Setter Property="SelectionUnit" Value="FullRow"/>
-        </Style>
-
-        <Style x:Key="Win11DataGridColumnHeader" TargetType="DataGridColumnHeader">
-            <Setter Property="Background" Value="#f5f5f5"/>
-            <Setter Property="Foreground" Value="#202020"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Padding" Value="10,8"/>
-            <Setter Property="BorderBrush" Value="#e6e6e6"/>
-            <Setter Property="BorderThickness" Value="0,0,1,1"/>
-        </Style>
-
-        <Style x:Key="Win11GroupBox" TargetType="GroupBox">
-            <Setter Property="BorderBrush" Value="#d1d1d1"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="10"/>
-            <Setter Property="Margin" Value="0,5"/>
-            <Setter Property="HeaderTemplate">
+            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+            <Setter Property="RowHeight" Value="48"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Template">
                 <Setter.Value>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}" FontWeight="SemiBold" FontSize="14" Margin="5,0"/>
-                    </DataTemplate>
+                    <ControlTemplate TargetType="DataGrid">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                            <ScrollViewer x:Name="DG_ScrollViewer" Focusable="False">
+                                <ScrollViewer.Template>
+                                    <ControlTemplate TargetType="ScrollViewer">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <DataGridColumnHeadersPresenter Grid.Column="1" 
+                                                                           x:Name="PART_ColumnHeadersPresenter"
+                                                                           Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Column}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                            <ScrollContentPresenter Grid.Row="1" Grid.ColumnSpan="2"
+                                                                    x:Name="PART_ScrollContentPresenter"
+                                                                    CanContentScroll="{TemplateBinding CanContentScroll}"/>
+                                            <ScrollBar Grid.Row="1" Grid.Column="2"
+                                                       x:Name="PART_VerticalScrollBar"
+                                                       Orientation="Vertical"
+                                                       ViewportSize="{TemplateBinding ViewportHeight}"
+                                                       Maximum="{TemplateBinding ScrollableHeight}"
+                                                       Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                                                       Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                            <ScrollBar Grid.Row="2" Grid.Column="1"
+                                                       x:Name="PART_HorizontalScrollBar"
+                                                       Orientation="Horizontal"
+                                                       ViewportSize="{TemplateBinding ViewportWidth}"
+                                                       Maximum="{TemplateBinding ScrollableWidth}"
+                                                       Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
+                                                       Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </ScrollViewer.Template>
+                                <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            </ScrollViewer>
+                        </Border>
+                    </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
 
-        <Style x:Key="Win11Label" TargetType="Label">
-            <Setter Property="Foreground" Value="#202020"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Margin" Value="0,0,0,4"/>
+        <Style x:Key="ModernDataGridColumnHeader" TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#F8FAFC"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimaryColor}"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="16,12"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
+            <Setter Property="BorderThickness" Value="0,0,1,1"/>
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DataGridColumnHeader">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
-    </Page.Resources>
 
-    <Grid>
+        <Style x:Key="ModernDataGridRow" TargetType="DataGridRow">
+            <Setter Property="Background" Value="{x:Null}"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#EBF4FF"/>
+                    <Setter Property="BorderBrush" Value="{StaticResource PrimaryColor}"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F3F4F6"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Card Style -->
+        <Style x:Key="Card" TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource SurfaceColor}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="0,8"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="2" 
+                                      Direction="270" 
+                                      Color="Gray" 
+                                      Opacity="0.1" 
+                                      BlurRadius="10"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Status Badge Styles -->
+        <Style x:Key="StatusBadge" TargetType="Border">
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="StatusText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
+        <!-- Loading Animation -->
+        <Storyboard x:Key="LoadingAnimation" RepeatBehavior="Forever">
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
+                             From="0" To="360" Duration="0:0:1"/>
+        </Storyboard>
+    </Page.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+
+        <Grid Background="{StaticResource BackgroundColor}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -153,8 +402,8 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Header -->
-        <Border Grid.Row="0" Background="#f2f2f2" Padding="20,16">
+        <!-- Enhanced Header -->
+        <Border Grid.Row="0" Style="{StaticResource Card}" Margin="16,16,16,8">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -162,295 +411,309 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="Order Management" FontSize="22" FontWeight="SemiBold" Foreground="#202020"/>
-                </StackPanel>
+                    <Ellipse Width="8" Height="8" Fill="{StaticResource SuccessColor}" Margin="0,0,8,0"/>
+                    <TextBlock Text="Order Management" FontSize="24" FontWeight="Bold" Foreground="{StaticResource TextPrimaryColor}"/>
+                    </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Content="New Order" Margin="10,0" Style="{StaticResource Win11PrimaryButton}"/>
-                    <Button Content="Export" Margin="10,0" Style="{StaticResource Win11Button}"/>
-                    <Button Content="Print" Margin="10,0" Style="{StaticResource Win11Button}"/>
+                    <Button x:Name="btnNeworder" Content="+ New Order" Margin="0,0,12,0" Style="{StaticResource PrimaryButton}" Padding="16,10"/>
+                    <Button x:Name="btnExport" Content="📤 Export" Margin="0,0,12,0" Style="{StaticResource ModernButton}" Padding="16,10" Click="btnExport_Click"/>
+                    <Button x:Name="btnprint" Content="🖨️ Print" Style="{StaticResource ModernButton}" Padding="16,10"/>
                 </StackPanel>
             </Grid>
         </Border>
 
-        <!-- Filters and Search -->
-        <Border Grid.Row="1" Background="White" BorderBrush="#e0e0e0" BorderThickness="0,0,0,1" Padding="20,10">
+        <!-- Enhanced Filters and Search -->
+        <Border Grid.Row="1" Style="{StaticResource Card}" Margin="16,8">
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
-                    <ComboBox Width="180" Margin="0,0,10,0" Style="{StaticResource Win11ComboBox}"
-                              DisplayMemberPath="CUSTOMERNAME" SelectedValuePath="CUSTOMERID"
-                              ToolTip="Filter by Customer">
-                        <ComboBox.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <VirtualizingStackPanel/>
-                            </ItemsPanelTemplate>
-                        </ComboBox.ItemsPanel>
-                    </ComboBox>
+                <TextBlock Grid.Row="0" Text="Filters And Search" FontSize="16" FontWeight="SemiBold" 
+                           Foreground="{StaticResource TextPrimaryColor}" Margin="0,0,0,16"/>
 
-                    <ComboBox Width="180" Margin="10,0" Style="{StaticResource Win11ComboBox}"
-                              DisplayMemberPath="SITENAME" SelectedValuePath="SITEID"
-                              ToolTip="Filter by Site">
-                        <ComboBox.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <VirtualizingStackPanel/>
-                            </ItemsPanelTemplate>
-                        </ComboBox.ItemsPanel>
-                    </ComboBox>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
 
-                    <ComboBox Width="180" Margin="10,0" Style="{StaticResource Win11ComboBox}"
-                              DisplayMemberPath="RECIPENAME" SelectedValuePath="ID"
-                              ToolTip="Filter by Recipe">
-                        <ComboBox.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <VirtualizingStackPanel/>
-                            </ItemsPanelTemplate>
-                        </ComboBox.ItemsPanel>
-                    </ComboBox>
+                    <WrapPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                        <StackPanel Orientation="Vertical" Margin="0,0,16,0" Width="180">
+                            <TextBlock Text="Customer" FontSize="12" Foreground="{StaticResource TextSecondaryColor}" Margin="0,0,0,4"/>
+                                <ComboBox x:Name="CustomerDropbox" Style="{StaticResource ModernComboBox}"
+                                      DisplayMemberPath="CUSTOMERNAME" 
+                                      SelectedValuePath="CUSTOMERID" SelectionChanged="CustomerDropbox_SelectionChanged">
+                                    <!--#endregion  <ComboBoxItem Content="All Customers"/>
+                                <ComboBoxItem Content="ABC Corporation"/>
+                                <ComboBoxItem Content="XYZ Industries"/> -->
+                                </ComboBox>
+                            </StackPanel> 
 
-                    <DatePicker Width="150" Margin="10,0" ToolTip="From Date" FontSize="14"/>
-                    <DatePicker Width="150" Margin="10,0" ToolTip="To Date" FontSize="14"/>
-                </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="0,0,16,0" Width="180">
+                            <TextBlock  Text="Site" FontSize="12" Foreground="{StaticResource TextSecondaryColor}" Margin="0,0,0,4"/>
+                                <ComboBox x:Name="SiteDropbox" Style="{StaticResource ModernComboBox}"
+                                      DisplayMemberPath="SITENAME" 
+                                      SelectedValuePath="SITEID" SelectionChanged="SiteDropbox_SelectionChanged">
+                               <!-- <ComboBoxItem Content="All Sites"/>
+                                <ComboBoxItem Content="Site A"/>
+                                <ComboBoxItem Content="Site B"/>-->
+                            </ComboBox> 
+                        </StackPanel>
 
-                <StackPanel Grid.Column="1" Orientation="Horizontal">
-                    <TextBox Width="220" Style="{StaticResource Win11TextBox}" Margin="10,0,0,0" ToolTip="Search">
-                        <TextBox.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="4"/>
-                            </Style>
-                        </TextBox.Resources>
-                    </TextBox>
-                    <Button Content="Search" Margin="10,0,0,0" Style="{StaticResource Win11PrimaryButton}" Width="80"/>
-                    <Button Content="Reset" Margin="10,0,0,0" Style="{StaticResource Win11Button}" Width="80"/>
-                </StackPanel>
-            </Grid>
-        </Border>
-
-        <!-- Data Grid -->
-        <DataGrid Grid.Row="1" Margin="6,57,3,0" Style="{StaticResource Win11DataGrid}"
-                  ColumnHeaderStyle="{StaticResource Win11DataGridColumnHeader}" Grid.RowSpan="2">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Order ID" Binding="{Binding ORDERID}" Width="90"/>
-                <DataGridTextColumn Header="Customer" Binding="{Binding CUSTOMERNAME}" Width="160"/>
-                <DataGridTextColumn Header="Site" Binding="{Binding SITENAME}" Width="160"/>
-                <DataGridTextColumn Header="Recipe" Binding="{Binding RECIPENAME}" Width="140"/>
-                <DataGridTextColumn Header="Order Quantity" Binding="{Binding ORDERQUANTITY}" Width="110"/>
-                <DataGridTextColumn Header="Completed" Binding="{Binding COMPLETEDQUANTITY}" Width="110"/>
-                <DataGridTextColumn Header="Pending" Binding="{Binding PENDINGQUANTITY}" Width="110"/>
-                <DataGridTextColumn Header="Created Date" Binding="{Binding CREATEDATE, StringFormat=\{0:dd/MM/yyyy HH:mm\}}" Width="160"/>
-
-                <DataGridTemplateColumn Header="Actions" Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <Button Content="View" Style="{StaticResource Win11Button}" Margin="5,0" Padding="12,4"/>
-                                <Button Content="Edit" Style="{StaticResource Win11Button}" Margin="5,0" Padding="12,4"/>
-                                <Button Content="Delete" Style="{StaticResource Win11Button}" Margin="5,0" Padding="12,4"/>
-                                <Button Content="Batch" Style="{StaticResource Win11PrimaryButton}" Margin="5,0" Padding="12,4" ToolTip="Create Batch"/>
+                        <StackPanel Orientation="Vertical" Margin="0,0,16,0" Width="180">
+                            <TextBlock Text="Recipe" FontSize="12" Foreground="{StaticResource TextSecondaryColor}" Margin="0,0,0,4"/>
+                                <ComboBox x:Name="RecipeDropbox" Style="{StaticResource ModernComboBox}"
+                                  DisplayMemberPath=""
+                                  SelectedValuePath="Id"
+                                  SelectionChanged="RecipeDropbox_SelectionChanged">
+                                </ComboBox>
                             </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
 
-        <!-- Pagination -->
-        <Border Grid.Row="3" Background="#f2f2f2" Padding="20,10">
+                        <StackPanel Orientation="Vertical" Margin="0,0,16,0" Width="150">
+                            <TextBlock Text="From Date" FontSize="12" Foreground="{StaticResource TextSecondaryColor}" Margin="0,0,0,4"/>
+                            <DatePicker FontSize="14" Height="29"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical" Margin="0,0,16,0" Width="150">
+                            <TextBlock Text="To Date" FontSize="12" Foreground="{StaticResource TextSecondaryColor}" Margin="0,0,0,4"/>
+                            <DatePicker FontSize="14" Height="29"/>
+                        </StackPanel>
+                    </WrapPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBox Width="256" Style="{StaticResource MordenTextBox}" Margin="0,0,25,0" x:Name="SearchTextBox" Height="35" TextChanged="SearchTextBox_TextChanged" 
+                                >
+                            <TextBox.Foreground>
+                                <SolidColorBrush Color="{Binding Source={x:Static SystemColors.GrayTextColor}}"/>
+                            </TextBox.Foreground>
+                        </TextBox>
+                        <Button x:Name="btnSearch" Content="🔍 Search" Style="{StaticResource PrimaryButton}" Width="114" Click="btnSearch_Click"/> 
+                        <Button x:Name="btnReset" Content="🔄 Reset" Margin="12,0,0,0" Style="{StaticResource ModernButton}" Width="125" Click="btnReset_Click"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Border>
+
+        <!-- Enhanced Data Grid with Status Indicators -->
+        <Border Grid.Row="2" Style="{StaticResource Card}" Margin="16,8">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="0,0,0,16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="Order List" FontSize="16" FontWeight="SemiBold" 
+                               Foreground="{StaticResource TextPrimaryColor}"/>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal"/>
+                </Grid>
+
+                <DataGrid x:Name="OrderDg" Grid.Row="1" Style="{StaticResource ModernDataGrid}"
+                          ColumnHeaderStyle="{StaticResource ModernDataGridColumnHeader}"
+                          RowStyle="{StaticResource ModernDataGridRow}" SelectionChanged="OrderDg_SelectionChanged">
+                    <DataGrid.Columns>  
+                        <!-- Order ID Column -->
+                        <DataGridTextColumn Header="Order ID" Binding="{Binding ORDERID}" Width="100">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontWeight" Value="Medium"/>
+                                    <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="Padding" Value="16,0"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- Customer Column -->
+                        <DataGridTextColumn Header="Customer" Binding="{Binding CUSTOMERNAME}" Width="160">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="Padding" Value="16,0"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- Site Column -->
+                        <DataGridTextColumn Header="Site" Binding="{Binding SITENAME}" Width="160">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="Padding" Value="16,0"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- Recipe Column -->
+                        <DataGridTextColumn Header="Recipe" Binding="{Binding RECIPENAME}" Width="140">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="Padding" Value="16,0"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- Quantity Column with Progress -->
+                        <!-- Quantity Column with Progress -->
+                        <DataGridTemplateColumn Header="Quantity" Width="180">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical" Margin="16,8">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" Text="{Binding QUANTITYORDERED, StringFormat={}{0:N0} m³}" 
+                                                       FontWeight="Medium" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="1" Text="{Binding QUANTITYPRODUCED, StringFormat={}{0:N0}}" 
+                                                       FontSize="12" Foreground="{StaticResource TextSecondaryColor}" VerticalAlignment="Center"/>
+                                        </Grid>
+                                        <ProgressBar Height="4" Margin="0,4,0,0" 
+                                                     Value="{Binding COMPLETIONPERCENTAGE}" Maximum="100"
+                                                     Background="#E5E7EB" BorderThickness="0">
+                                            <ProgressBar.Foreground>
+                                                <SolidColorBrush Color="Aqua"/>
+                                            </ProgressBar.Foreground>
+                                        </ProgressBar>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!-- Status Column with Badge -->
+                        <DataGridTemplateColumn Header="Status" Width="120">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border Style="{StaticResource StatusBadge}" Margin="16,8">
+                                        <Border.Background>
+                                            <SolidColorBrush Color="Aqua"/>
+                                        </Border.Background>
+                                        <TextBlock Style="{StaticResource StatusText}" Text="{Binding STATUS}">
+                                            <TextBlock.Foreground>
+                                                <SolidColorBrush Color="Aqua"/>
+                                            </TextBlock.Foreground>
+                                        </TextBlock>
+                                    </Border>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!-- Priority Column -->
+                        <DataGridTemplateColumn Header="Priority" Width="100">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Margin="16,0" VerticalAlignment="Center">
+                                        <Ellipse Width="8" Height="8" Margin="0,0,8,0">
+                                            <Ellipse.Fill>
+                                                <SolidColorBrush Color="Aqua"/>
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                        <TextBlock Text="{Binding PRIORITY}" VerticalAlignment="Center" FontSize="12"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!-- Order Date Column -->
+                        <DataGridTextColumn Header="Order Date" Binding="{Binding ORDERDATE, StringFormat=dd/MM/yyyy}" Width="120">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="Padding" Value="16,0"/>
+                                    <Setter Property="FontSize" Value="13"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- Delivery Date Column -->
+                        <DataGridTextColumn Header="Delivery Date" Binding="{Binding DELIVERYDATE, StringFormat=dd/MM/yyyy}" Width="120">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="Padding" Value="16,0"/>
+                                    <Setter Property="FontSize" Value="13"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- Actions Column -->
+                        <DataGridTemplateColumn Header="Actions" Width="200">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Margin="16,8">
+                                        <Button Content="👁️" ToolTip="View Details" 
+                                                Style="{StaticResource IconButton}" Margin="0,0,4,0"/>
+                                        <Button Content="✏️" ToolTip="Edit Order" 
+                                                Style="{StaticResource IconButton}" Margin="0,0,4,0"/>
+                                        <Button Content="📋" ToolTip="Copy Order" 
+                                                Style="{StaticResource IconButton}" Margin="0,0,4,0"/>
+                                        <Button Content="🗑️" ToolTip="Delete Order" 
+                                                Style="{StaticResource IconButton}" Margin="0,0,4,0">
+
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+
+        <!-- Enhanced Footer with Pagination and Summary -->
+        <Border Grid.Row="3" Style="{StaticResource Card}" Margin="16,8,16,16">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="Showing" VerticalAlignment="Center"/>
-                    <ComboBox Width="60" Margin="8,0" SelectedIndex="0" Style="{StaticResource Win11ComboBox}">
+                <!-- Summary Information -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center"/>
+
+                <!-- Page Size Selector -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="16,0">
+                    <TextBlock Text="Rows per page:" FontSize="14" Foreground="{StaticResource TextSecondaryColor}" 
+                               VerticalAlignment="Center" Margin="0,0,8,0"/>
+                    <ComboBox Width="80" Style="{StaticResource ModernComboBox}" SelectedIndex="1">
                         <ComboBoxItem Content="10"/>
                         <ComboBoxItem Content="25"/>
                         <ComboBoxItem Content="50"/>
                         <ComboBoxItem Content="100"/>
                     </ComboBox>
-                    <TextBlock Text="entries" VerticalAlignment="Center"/>
                 </StackPanel>
 
-                <TextBlock Grid.Column="1" Text="Showing 1 to 10 of 150 entries" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <!-- Pagination Controls -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button Content="⟨⟨" Style="{StaticResource ModernButton}" Width="40" Height="40" 
+                            ToolTip="First Page" IsEnabled="False" Margin="0,0,4,0"/>
+                    <Button Content="⟨" Style="{StaticResource ModernButton}" Width="40" Height="40" 
+                            ToolTip="Previous Page" IsEnabled="False" Margin="0,0,4,0"/>
 
-                <StackPanel Grid.Column="2" Orientation="Horizontal">
-                    <Button Content="Previous" Style="{StaticResource Win11Button}" Width="90" Margin="0,0,10,0"/>
-                    <Button Content="Next" Style="{StaticResource Win11PrimaryButton}" Width="90"/>
+                    <Border Background="#EBF4FF" CornerRadius="6" Padding="8,6" Margin="4,0" Height="34">
+                        <TextBlock Text="Page 1 of 6" FontSize="14" FontWeight="Medium" 
+                                   Foreground="{StaticResource PrimaryColor}"/>
+                    </Border>
+
+                    <Button Content="⟩" Style="{StaticResource ModernButton}" Width="40" Height="40" 
+                            ToolTip="Next Page" Margin="4,0,0,0"/>
+                    <Button Content="⟩⟩" Style="{StaticResource ModernButton}" Width="40" Height="40" 
+                            ToolTip="Last Page" Margin="4,0,0,0"/>
                 </StackPanel>
             </Grid>
         </Border>
-
-        <!-- Order Detail Flyout/Popup - Will be toggled via code-behind -->
-        <Border x:Name="OrderDetailPanel" Grid.RowSpan="4" Background="#80000000" Visibility="Collapsed">
-            <Border MaxWidth="800" MaxHeight="700" Background="White" CornerRadius="6" Padding="20">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-
-                    <Border Grid.Row="0" BorderBrush="#e0e0e0" BorderThickness="0,0,0,1" Padding="0,0,0,10" Margin="0,0,0,10">
-                        <Grid>
-                            <TextBlock Text="Order Details" FontSize="18" FontWeight="SemiBold"/>
-                            <Button Content="×" HorizontalAlignment="Right" Style="{StaticResource Win11Button}"
-                                    Width="36" Height="36" Padding="0" FontSize="20"/>
-                        </Grid>
-                    </Border>
-
-                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                        <StackPanel>
-                            <GroupBox Header="Order Information" Style="{StaticResource Win11GroupBox}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-
-                                    <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,10,10">
-                                        <Label Content="Order ID" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Text="{Binding ORDERID}" Style="{StaticResource Win11TextBox}" IsReadOnly="True"/>
-                                    </StackPanel>
-
-                                    <StackPanel Grid.Row="0" Grid.Column="1" Margin="10,0,0,10">
-                                        <Label Content="Order Quantity" Style="{StaticResource Win11Label}"/>
-                                        <TextBox Text="{Binding ORDERQUANTITY}" Style="{StaticResource Win11TextBox}"/>
-                                    </StackPanel>
-
-                                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,10,10">
-                                        <Label Content="Customer" Style="{StaticResource Win11Label}"/>
-                                        <ComboBox Style="{StaticResource Win11ComboBox}" DisplayMemberPath="CUSTOMERNAME" SelectedValuePath="CUSTOMERID"/>
-                                    </StackPanel>
-
-                                    <StackPanel Grid.Row="1" Grid.Column="1" Margin="10,0,0,10">
-                                        <Label Content="Site" Style="{StaticResource Win11Label}"/>
-                                        <ComboBox Style="{StaticResource Win11ComboBox}" DisplayMemberPath="SITENAME" SelectedValuePath="SITEID"/>
-                                    </StackPanel>
-
-                                    <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,10">
-                                        <Label Content="Recipe" Style="{StaticResource Win11Label}"/>
-                                        <ComboBox Style="{StaticResource Win11ComboBox}" DisplayMemberPath="RECIPENAME" SelectedValuePath="ID"/>
-                                    </StackPanel>
-                                </Grid>
-                            </GroupBox>
-
-                            <GroupBox Header="Recipe Details" Style="{StaticResource Win11GroupBox}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-
-                                    <!-- Aggregates -->
-                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Aggregates" FontWeight="SemiBold" Margin="0,0,0,8"/>
-                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Material" FontWeight="SemiBold" Margin="0,0,0,8"/>
-                                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Set Point" FontWeight="SemiBold" Margin="0,0,0,8"/>
-
-                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="AGG1"/>
-                                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding AGG1NAME}" Style="{StaticResource Win11TextBox}" Height="30" Margin="0,0,10,6"/>
-                                    <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding AGG1STP}" Style="{StaticResource Win11TextBox}" Height="30" Margin="0,0,0,6"/>
-
-                                    <TextBlock Grid.Row="2" Grid.Column="0" Text="AGG2"/>
-                                    <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding AGG2NAME}" Style="{StaticResource Win11TextBox}" Height="30" Margin="0,0,10,6"/>
-                                    <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding AGG2STP}" Style="{StaticResource Win11TextBox}" Height="30" Margin="0,0,0,6"/>
-                                </Grid>
-                            </GroupBox>
-
-                            <GroupBox Header="Cement" Style="{StaticResource Win11GroupBox}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-
-                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Type" FontWeight="SemiBold" Margin="0,0,0,8"/>
-                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Material" FontWeight="SemiBold" Margin="0,0,0,8"/>
-                                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Set Point" FontWeight="SemiBold" Margin="0,0,0,8"/>
-
-                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="CEMENT1"/>
-                                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CEMENT1NAME}" Style="{StaticResource Win11TextBox}" Height="30" Margin="0,0,10,6"/>
-                                    <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding CEMENT1STP}" Style="{StaticResource Win11TextBox}" Height="30" Margin="0,0,0,6"/>
-                                </Grid>
-                            </GroupBox>
-
-                            <GroupBox Header="Water" Style="{StaticResource Win11GroupBox}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-
-                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Type" FontWeight="SemiBold" Margin="0,0,0,8"/>
-                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Source" FontWeight="SemiBold" Margin="0,0,0,8"/>
-                                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Set Point" FontWeight="SemiBold" Margin="0,0,0,8"/>
-
-                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="WATER1"/>
-                                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding WATER1NAME}" Style="{StaticResource Win11TextBox}" Height="30" Margin="0,0,10,6"/>
-                                    <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding WATER1STP}" Style="{StaticResource Win11TextBox}" Height="30" Margin="0,0,0,6"/>
-                                </Grid>
-                            </GroupBox>
-
-                            <GroupBox Header="Admixtures" Style="{StaticResource Win11GroupBox}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-
-                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Type" FontWeight="SemiBold" Margin="0,0,0,8"/>
-                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Material" FontWeight="SemiBold" Margin="0,0,0,8"/>
-                                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Set Point" FontWeight="SemiBold" Margin="0,0,0,8"/>
-
-                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="ADMIX1"/>
-                                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ADMIX1NAME}" Style="{StaticResource Win11TextBox}" Height="30" Margin="0,0,10,6"/>
-                                    <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding ADMIX1STP}" Style="{StaticResource Win11TextBox}" Height="30" Margin="0,0,0,6"/>
-                                </Grid>
-                            </GroupBox>
-                        </StackPanel>
-                    </ScrollViewer>
-
-                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
-                        <Button Content="Cancel" Style="{StaticResource Win11Button}" Width="100" Margin="0,0,10,0"/>
-                        <Button Content="Save" Style="{StaticResource Win11PrimaryButton}" Width="100"/>
-                    </StackPanel>
-                </Grid>
-            </Border>
-        </Border>
     </Grid>
+  </ScrollViewer>
 </Page>
