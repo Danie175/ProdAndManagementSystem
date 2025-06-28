@@ -6,25 +6,6 @@ A comprehensive WPF-based enterprise application designed to streamline and auto
 
 The Production & Management System is a robust desktop application that digitizes and simplifies the flow of production data in concrete batching operations. The system integrates various core modules including:
 
-- **Customer Management** - Complete customer lifecycle management with GST compliance
-- **Order Processing** - End-to-end order tracking from creation to delivery
-- **Material Inventory** - Real-time material stock management and tracking
-- **Recipe Management** - Digital concrete mix design and formulation control
-- **Batch Production** - Production workflow management with traceability
-- **Vehicle & Driver Management** - Transportation asset and logistics coordination
-- **Site Management** - Multi-location operational site management
-- **Supplier Management** - Vendor relationship and procurement tracking
-
-### Key Features
-
-- **Modern WPF Interface** - Intuitive, card-based layout with responsive design
-- **Real-time Dashboard** - Live operational metrics and status monitoring
-- **Complete Traceability** - End-to-end tracking from order to delivery
-- **Data Integrity** - Robust validation and business rule enforcement
-- **Scalable Architecture** - Modular design supporting future enhancements
-- **Enterprise-Grade Database** - SQL Server with ACID compliance
-- **Ticket-based Workflow** - Multi-stage data collection and validation
-
 ## 🛠️ Technologies Used
 
 - **Frontend**: C# with WPF (.NET Core/Framework)
