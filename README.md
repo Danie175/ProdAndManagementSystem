@@ -133,86 +133,6 @@ dotnet run
 - **Missing Dependencies**: Run `dotnet restore` or update NuGet packages
 - **Port Conflicts**: Ensure SQL Server default ports (1433) are available
 
-## 📊 Modules & Features
-
-### 1. **Dashboard Module**
-- Central control panel with navigation tiles
-- Real-time metrics display (customers, orders, batches)
-- Quick access to all system modules
-- System status indicators
-
-### 2. **Customer Management (`CustomerView.xaml`)**
-- **CRUD Operations**: Create, Read, Update, Delete customer records
-- **Data Fields**: Customer ID, Name, Address, Contact, GST Number
-- **Features**: 
-  - Auto-generated unique Code IDs
-  - Advanced search and filtering
-  - Data validation and duplicate prevention
-  - Export and print capabilities
-
-### 3. **Order Management (`OrderView.xaml`)**
-- **Order Processing**: Complete order lifecycle management
-- **Integration**: Links customers, sites, recipes, and suppliers
-- **Features**:
-  - Order status tracking
-  - Priority management
-  - Date range filtering
-  - Delivery scheduling
-
-### 4. **Material Management (`MaterialView.xaml`)**
-- **Inventory Control**: Real-time stock tracking
-- **Transaction Logging**: IN/OUT material movements
-- **Features**:
-  - Material master data management
-  - Supplier integration
-  - Cost tracking and analytics
-  - Automated reorder notifications
-
-### 5. **Recipe Management (`RecipeView.xaml`)**
-- **Mix Design**: Digital concrete formulation
-- **Composition Control**: Aggregate and cement ratios
-- **Features**:
-  - Recipe templates
-  - Quality consistency
-  - Version control
-  - Performance analytics
-
-### 6. **Batch Management (`BatchView.xaml`)**
-- **Production Tracking**: Real-time batch monitoring
-- **Traceability**: Complete production audit trail
-- **Features**:
-  - Batch numbering system
-  - Quality control checkpoints
-  - Production scheduling
-  - Delivery coordination
-
-### 7. **Transport Management (`TransportView.xaml`)**
-- **Vehicle Registration**: Fleet management
-- **Driver Assignment**: Resource allocation
-- **Features**:
-  - Vehicle-driver linking
-  - Contact management
-  - Compliance tracking
-  - Route optimization
-
-### 8. **Site Management (`SiteView.xaml`)**
-- **Location Management**: Multi-site operations
-- **Site Configuration**: Address and contact details
-- **Features**:
-  - Site-specific settings
-  - Geographic tracking
-  - Operational status
-  - Resource allocation
-
-### 9. **Supplier Management (`SupplierView.xaml`)**
-- **Vendor Management**: Complete supplier lifecycle
-- **Procurement Integration**: Material sourcing
-- **Features**:
-  - GST compliance tracking
-  - Performance monitoring
-  - Contract management
-  - Quality assessments
-
 ## 📚 Required Modules Installation
 
 ### Core NuGet Packages
@@ -347,10 +267,6 @@ This project is part of an academic internship program and is intended for educa
 ## 👨‍💻 Developer Information
 
 **Student**: Lloyd Noronha  
-**SRN**: 01fe21bar006  
-**Institution**: Department of Automation & Robotics  
-**Project**: Industry Internship Project - 17EARW494  
-**Company**: Sprint Consys Pvt. Ltd.
 
 ## 🤝 Contributing
 
@@ -360,8 +276,6 @@ This is an internship project. For suggestions or improvements, please contact t
 
 For technical support or questions:
 - Email: lloyd.noronha11@gmail.com
-- Phone: +91 8792568060
-
 ---
 
 *This Production & Management System represents a foundational step toward smarter, more connected industrial management, serving as a platform for future enhancements including analytics, cloud integration, and IoT connectivity.*
