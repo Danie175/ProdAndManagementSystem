@@ -1,310 +1,386 @@
 # Production & Management System
 
-A comprehensive enterprise-level WPF application designed to streamline and automate concrete batching industry operations. This system manages the complete workflow from customer order intake to final batch production and delivery, providing real-time operational visibility and data integrity.
+A comprehensive WPF-based enterprise application designed to streamline and automate concrete batching industry operations. This system provides complete workflow management from customer order intake to final batch production and delivery.
 
-## 🎯 Project Overview
+## 📋 Project Overview
 
-The Production & Management System is a robust Windows desktop application that addresses critical needs in concrete manufacturing facilities. It provides efficient management of:
+The Production & Management System is a robust desktop application that digitizes and simplifies the flow of production data in concrete batching operations. The system integrates various core modules including:
 
-- **Customer Relationship Management** - Complete customer data with GST compliance
-- **Order Processing** - From intake to fulfillment tracking
-- **Material Inventory** - Real-time stock levels and transaction history
-- **Recipe Management** - Concrete mix formulations and compositions
-- **Supplier Coordination** - Vendor management and procurement tracking
-- **Batch Production** - Complete production workflow and dispatch management
-- **Transport Management** - Vehicle and driver assignment tracking
-- **Site Management** - Multiple location operations support
+- **Customer Management** - Complete customer lifecycle management with GST compliance
+- **Order Processing** - End-to-end order tracking from creation to delivery
+- **Material Inventory** - Real-time material stock management and tracking
+- **Recipe Management** - Digital concrete mix design and formulation control
+- **Batch Production** - Production workflow management with traceability
+- **Vehicle & Driver Management** - Transportation asset and logistics coordination
+- **Site Management** - Multi-location operational site management
+- **Supplier Management** - Vendor relationship and procurement tracking
 
 ### Key Features
 
-- 🖥️ **Modern WPF Interface** - Card-based layout with intuitive navigation
-- 🗄️ **Robust Data Persistence** - SQL Server with Entity Framework Core
-- 🔄 **Complete CRUD Operations** - Full create, read, update, delete functionality
-- 📊 **Real-time Dashboard** - Live operational metrics and KPIs
-- 🔍 **Advanced Search & Filtering** - Multi-field search capabilities
-- 📈 **Scalable Architecture** - Modular design for future enhancements
-- ✅ **Data Validation** - Client and server-side validation strategies
-- 🔒 **Transaction Management** - ACID compliance for data integrity
+- **Modern WPF Interface** - Intuitive, card-based layout with responsive design
+- **Real-time Dashboard** - Live operational metrics and status monitoring
+- **Complete Traceability** - End-to-end tracking from order to delivery
+- **Data Integrity** - Robust validation and business rule enforcement
+- **Scalable Architecture** - Modular design supporting future enhancements
+- **Enterprise-Grade Database** - SQL Server with ACID compliance
+- **Ticket-based Workflow** - Multi-stage data collection and validation
 
 ## 🛠️ Technologies Used
 
-- **Frontend**: C# WPF (.NET 8) with XAML
-- **Backend**: Entity Framework Core 8.0
+- **Frontend**: C# with WPF (.NET Core/Framework)
+- **Backend**: Entity Framework Core (Code-First approach)
 - **Database**: Microsoft SQL Server (LocalDB/Express/Full)
-- **Architecture**: MVVM Pattern with Repository Pattern
-- **Query Language**: LINQ with Method & Query Syntax
-- **IDE**: Visual Studio 2022 or later
-- **Additional**: Windows Presentation Foundation (WPF), Fluent API Configuration
+- **UI Framework**: XAML with custom styling and MVVM pattern
+- **Development Environment**: Visual Studio 2022 or later
+- **Query Technology**: LINQ for data operations
+- **Architecture**: Layered architecture with dependency injection
 
-## 📋 Prerequisites
+## 📦 Installation Instructions
 
-Before running the application, ensure you have:
+### Prerequisites
 
-- **Visual Studio 2022** or later with WPF workload
-- **.NET 8 SDK** or later
-- **SQL Server** (LocalDB, Express, or Full edition)
-- **SQL Server Management Studio (SSMS)** - Optional but recommended
-- **Windows 10/11** operating system
+Ensure you have the following software installed:
 
-## 🚀 Installation Instructions
+1. **Visual Studio 2022** (Community, Professional, or Enterprise)
+   - Workloads: ".NET desktop development" and "Data storage and processing"
+2. **.NET 8 SDK** or later
+3. **Microsoft SQL Server** (LocalDB, Express, or Full version)
+4. **SQL Server Management Studio (SSMS)** - Optional but recommended
 
-### 1. Clone the Repository
+### Step-by-Step Setup
 
-```bash
-git clone https://github.com/yourusername/ProductionManagementSystem.git
-cd ProductionManagementSystem
-```
-
-### 2. Configure Database Connection
-
-Open `appsettings.json` or locate the connection string in your DbContext configuration:
-
-```json
-{
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=(localdb)\\MSSQLLocalDB;Database=ProductionManagementDB;Trusted_Connection=true;MultipleActiveResultSets=true"
-  }
-}
-```
-
-**For SQL Server Express:**
-```json
-{
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=.\\SQLEXPRESS;Database=ProductionManagementDB;Trusted_Connection=true;MultipleActiveResultSets=true"
-  }
-}
-```
-
-**For Full SQL Server:**
-```json
-{
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=YOUR_SERVER_NAME;Database=ProductionManagementDB;Integrated Security=true;MultipleActiveResultSets=true"
-  }
-}
-```
-
-### 3. Apply Entity Framework Migrations
-
-Open **Package Manager Console** in Visual Studio or use Command Line:
-
-```bash
-# Via Package Manager Console
-Update-Database
-
-# Via Command Line (.NET CLI)
-dotnet ef database update
-```
-
-### 4. Create Database Manually (Alternative)
-
-If you prefer creating the database manually:
-
-1. Open **SQL Server Management Studio (SSMS)**
-2. Connect to your SQL Server instance
-3. Create a new database named `ProductionManagementDB`
-4. Run the migration command above
-
-## ▶️ How to Run the Application
-
-### Via Visual Studio
-1. Open `ProductionManagementSystem.sln` in Visual Studio 2022
-2. Set the WPF project as the startup project
-3. Build the solution (`Ctrl + Shift + B`)
-4. Run the application (`F5` or `Ctrl + F5`)
-
-### Via Command Line
-```bash
-dotnet build
-dotnet run
-```
-
-### First Launch
-- The application will start with the **Dashboard** as the main screen
-- Navigate through different modules using the card-based navigation tiles
-- The database will be automatically created if it doesn't exist (with migrations applied)
-
-## 📋 Modules & Features
-
-### 🏠 Dashboard
-- **Real-time Metrics**: Customer count, recent orders, material status
-- **Quick Navigation**: Direct access to all system modules
-- **Activity Notifications**: Recent orders and batch production updates
-
-### 👥 Customer Management (`CustomerView.xaml`)
-- **CRUD Operations**: Add, view, edit, delete customer records
-- **Data Fields**: Customer ID, Name, Address, Phone, GST Number
-- **Search Functionality**: Multi-field search across customer data
-- **Validation**: Real-time form validation and duplicate prevention
-
-### 📦 Order Management
-- **Order Processing**: Complete order lifecycle management
-- **Filtering System**: By customer, site, recipe, date range
-- **Integration**: Links customers, sites, recipes, and suppliers
-- **Export/Print**: Generate reports and documentation
-
-### 🏭 Batch Management
-- **Production Tracking**: Record actual batch production events
-- **Dispatch Management**: Link batches to vehicles and drivers
-- **Traceability**: End-to-end tracking from order to delivery
-- **Quality Control**: Batch quantity and cycle data recording
-
-### 📋 Recipe Management
-- **Mix Design**: Define concrete formulations and compositions
-- **Material Components**: Aggregates and cement specifications
-- **Flexibility**: Support for simple and complex mix designs
-- **Standardization**: Ensure consistency in batching operations
-
-### 📊 Material Management
-- **Inventory Tracking**: Real-time stock levels and movements
-- **Transaction History**: Complete material IN/OUT records
-- **Supplier Integration**: Track material sources and costs
-- **Analytics**: Material consumption and forecasting
-
-### 🚛 Transport Management
-- **Vehicle Registration**: Complete vehicle and driver data
-- **Assignment Tracking**: Link drivers to vehicles
-- **Compliance**: Transport regulation adherence
-- **Contact Management**: Driver communication details
-
-### 🏢 Site Management
-- **Location Management**: Multiple operational sites
-- **Address Tracking**: Complete site information
-- **Contact Details**: Site-specific communication
-- **Search Capability**: Quick site location and retrieval
-
-### 🏪 Supplier Management
-- **Vendor Data**: Complete supplier information
-- **GST Compliance**: Tax identification tracking
-- **Procurement Support**: Streamlined vendor management
-- **Search & Filter**: Quick supplier location
-
-## 🔧 Customization Notes
-
-### Adding New Views/Modules
-
-1. **Create XAML View:**
-   ```xml
-   <UserControl x:Class="YourNamespace.Views.NewModuleView"
-                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-       <!-- Your UI here -->
-   </UserControl>
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/your-username/production-management-system.git
+   cd production-management-system
    ```
 
-2. **Add Navigation Button:**
-   ```xml
-   <Button Content="New Module" Click="NewModule_Click" Style="{StaticResource ModuleButtonStyle}"/>
-   ```
+2. **Open the Solution**
+   - Launch Visual Studio 2022
+   - Open `ProdAndManagementSystem.sln`
 
-3. **Update DbContext:**
-   ```csharp
-   public DbSet<NewEntity> NewEntities { get; set; }
-   ```
-
-### Modifying Database Schema
-
-1. **Update Entity Models:**
-   ```csharp
-   public class Customer
+3. **Configure Database Connection**
+   
+   Update the connection string in `appsettings.json` or `App.config`:
+   
+   **For LocalDB:**
+   ```json
    {
-       // Add new properties
-       public string NewProperty { get; set; }
+     "ConnectionStrings": {
+       "DefaultConnection": "Server=(localdb)\\MSSQLLocalDB;Database=SQLEXPRESS;Trusted_Connection=true;TrustServerCertificate=true;"
+     }
+   }
+   ```
+   
+   **For SQL Server Express:**
+   ```json
+   {
+     "ConnectionStrings": {
+       "DefaultConnection": "Server=.\\SQLEXPRESS;Database=SQLEXPRESS;Integrated Security=true;TrustServerCertificate=true;"
+     }
+   }
+   ```
+   
+   **For SQL Server with Authentication:**
+   ```json
+   {
+     "ConnectionStrings": {
+       "DefaultConnection": "Server=your-server;Database=SQLEXPRESS;User Id=your-username;Password=your-password;TrustServerCertificate=true;"
+     }
    }
    ```
 
-2. **Create Migration:**
+4. **Database Setup**
+   
+   **Option A: Using Entity Framework Migrations**
    ```bash
-   Add-Migration AddNewPropertyToCustomer
+   # Open Package Manager Console in Visual Studio
+   # Run the following commands:
+   
+   Add-Migration InitialCreate
    Update-Database
    ```
+   
+   **Option B: Manual Database Creation**
+   - Open SQL Server Management Studio (SSMS)
+   - Connect to your SQL Server instance
+   - Create a new database named `SQLEXPRESS`
+   - Run the provided SQL scripts (if available) or let EF Core create the schema
 
-### Customizing UI Styles
+5. **Restore NuGet Packages**
+   ```bash
+   # In Package Manager Console
+   Update-Package -reinstall
+   ```
 
-Modify styles in `App.xaml` or create new resource dictionaries:
-```xml
-<Style x:Key="CustomButtonStyle" TargetType="Button">
-    <Setter Property="Background" Value="#Your_Color"/>
-    <!-- Additional styling -->
-</Style>
-```
+## 🚀 How to Run the Application
 
-## 🐛 Troubleshooting
+### Running from Visual Studio
 
-### Common Entity Framework Issues
+1. **Set Startup Project**
+   - Right-click on the main project in Solution Explorer
+   - Select "Set as StartUp Project"
 
-**IDENTITY_INSERT Error:**
-```sql
--- Disable identity insert if manually setting IDs
-SET IDENTITY_INSERT [TableName] ON
--- Your INSERT statements
-SET IDENTITY_INSERT [TableName] OFF
-```
+2. **Build the Solution**
+   - Press `Ctrl + Shift + B` or go to Build → Build Solution
+   - Ensure no compilation errors
 
-**Migration Issues:**
+3. **Run the Application**
+   - Press `F5` or click the "Start" button
+   - The WPF application window should launch
+
+### Running from Command Line
+
 ```bash
-# Reset migrations
-dotnet ef migrations remove
-dotnet ef migrations add InitialCreate
-dotnet ef database update
+# Navigate to the project directory
+cd ProdAndManagementSystem
+
+# Restore dependencies
+dotnet restore
+
+# Build the project
+dotnet build
+
+# Run the application
+dotnet run
 ```
 
-### SQL Connection Issues
+### Common Startup Issues
 
-**LocalDB Connection Problems:**
-1. Verify LocalDB is installed: `sqllocaldb info`
-2. Start LocalDB instance: `sqllocaldb start MSSQLLocalDB`
-3. Check connection string format
+- **Connection String Error**: Verify SQL Server is running and connection string is correct
+- **Migration Error**: Run `Update-Database` in Package Manager Console
+- **Missing Dependencies**: Run `dotnet restore` or update NuGet packages
+- **Port Conflicts**: Ensure SQL Server default ports (1433) are available
 
-**SQL Server Authentication:**
+## 📊 Modules & Features
+
+### 1. **Dashboard Module**
+- Central control panel with navigation tiles
+- Real-time metrics display (customers, orders, batches)
+- Quick access to all system modules
+- System status indicators
+
+### 2. **Customer Management (`CustomerView.xaml`)**
+- **CRUD Operations**: Create, Read, Update, Delete customer records
+- **Data Fields**: Customer ID, Name, Address, Contact, GST Number
+- **Features**: 
+  - Auto-generated unique Code IDs
+  - Advanced search and filtering
+  - Data validation and duplicate prevention
+  - Export and print capabilities
+
+### 3. **Order Management (`OrderView.xaml`)**
+- **Order Processing**: Complete order lifecycle management
+- **Integration**: Links customers, sites, recipes, and suppliers
+- **Features**:
+  - Order status tracking
+  - Priority management
+  - Date range filtering
+  - Delivery scheduling
+
+### 4. **Material Management (`MaterialView.xaml`)**
+- **Inventory Control**: Real-time stock tracking
+- **Transaction Logging**: IN/OUT material movements
+- **Features**:
+  - Material master data management
+  - Supplier integration
+  - Cost tracking and analytics
+  - Automated reorder notifications
+
+### 5. **Recipe Management (`RecipeView.xaml`)**
+- **Mix Design**: Digital concrete formulation
+- **Composition Control**: Aggregate and cement ratios
+- **Features**:
+  - Recipe templates
+  - Quality consistency
+  - Version control
+  - Performance analytics
+
+### 6. **Batch Management (`BatchView.xaml`)**
+- **Production Tracking**: Real-time batch monitoring
+- **Traceability**: Complete production audit trail
+- **Features**:
+  - Batch numbering system
+  - Quality control checkpoints
+  - Production scheduling
+  - Delivery coordination
+
+### 7. **Transport Management (`TransportView.xaml`)**
+- **Vehicle Registration**: Fleet management
+- **Driver Assignment**: Resource allocation
+- **Features**:
+  - Vehicle-driver linking
+  - Contact management
+  - Compliance tracking
+  - Route optimization
+
+### 8. **Site Management (`SiteView.xaml`)**
+- **Location Management**: Multi-site operations
+- **Site Configuration**: Address and contact details
+- **Features**:
+  - Site-specific settings
+  - Geographic tracking
+  - Operational status
+  - Resource allocation
+
+### 9. **Supplier Management (`SupplierView.xaml`)**
+- **Vendor Management**: Complete supplier lifecycle
+- **Procurement Integration**: Material sourcing
+- **Features**:
+  - GST compliance tracking
+  - Performance monitoring
+  - Contract management
+  - Quality assessments
+
+## 📚 Required Modules Installation
+
+### Core NuGet Packages
+
+Install the following packages via Package Manager Console:
+
+```powershell
+# Entity Framework Core
+Install-Package Microsoft.EntityFrameworkCore
+Install-Package Microsoft.EntityFrameworkCore.SqlServer
+Install-Package Microsoft.EntityFrameworkCore.Tools
+
+# Additional EF Core packages
+Install-Package Microsoft.EntityFrameworkCore.Design
+Install-Package Microsoft.EntityFrameworkCore.Proxies
+
+# Configuration
+Install-Package Microsoft.Extensions.Configuration
+Install-Package Microsoft.Extensions.Configuration.Json
+
+# Dependency Injection
+Install-Package Microsoft.Extensions.DependencyInjection
+Install-Package Microsoft.Extensions.Hosting
+
+# Logging
+Install-Package Microsoft.Extensions.Logging
+Install-Package Microsoft.Extensions.Logging.Console
+```
+
+### Manual Package Installation
+
+If you prefer installing via NuGet Package Manager UI:
+
+1. Right-click on the project → "Manage NuGet Packages"
+2. Go to "Browse" tab
+3. Search and install each package listed above
+4. Ensure "Include prerelease" is unchecked for stable versions
+
+### Package Versions Compatibility
+
+```xml
+<!-- Example PackageReference entries for .csproj file -->
+<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
+<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0" />
+```
+
+## 🔗 SQL Server Configuration
+
+### SQL Server Authentication
+
+#### Windows Authentication (Recommended for Development)
 ```json
-"Server=server_name;Database=db_name;User Id=username;Password=password;"
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=.\\SQLEXPRESS;Database=SQLEXPRESS;Integrated Security=true;TrustServerCertificate=true;"
+  }
+}
 ```
 
-**Trust Server Certificate (for newer SQL Server):**
+#### SQL Server Authentication
 ```json
-"Server=server_name;Database=db_name;Trusted_Connection=true;TrustServerCertificate=true;"
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=.\\SQLEXPRESS;Database=SQLEXPRESS;User Id=sa;Password=YourPassword123;TrustServerCertificate=true;"
+  }
+}
 ```
 
-### Application Startup Issues
+### Trust Server Certificates
 
-**Missing Dependencies:**
-- Ensure all NuGet packages are restored
-- Verify .NET 8 runtime is installed
-- Check WPF workload in Visual Studio
+For development environments, add `TrustServerCertificate=true` to bypass SSL certificate validation:
 
-**Database Not Found:**
-- Run `Update-Database` command
-- Verify connection string points to correct server
-- Check SQL Server service is running
+```csharp
+// In DbContext configuration
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+{
+    optionsBuilder.UseSqlServer(connectionString, options =>
+    {
+        options.EnableRetryOnFailure();
+        options.TrustServerCertificate();
+    });
+}
+```
 
-## 🚀 Future Improvements
+### Connection String Components
 
-### Planned Enhancements
-- **🌐 Web Interface**: Browser-based access for remote operations
-- **📱 Mobile App**: Field operations support for delivery tracking
-- **☁️ Cloud Integration**: Azure/AWS deployment options
-- **🤖 Analytics & AI**: Predictive modeling for demand forecasting
-- **🔐 Advanced Security**: Role-based access control and audit trails
-- **📊 Advanced Reporting**: Crystal Reports or Power BI integration
-- **🔄 API Development**: REST API for external system integration
-- **📡 IoT Connectivity**: Real-time equipment monitoring
+| Parameter | Description | Example |
+|-----------|-------------|---------|
+| `Server` | SQL Server instance | `.\\SQLEXPRESS`, `localhost`, `(localdb)\\MSSQLLocalDB` |
+| `Database` | Database name | `SQLEXPRESS`, `ProductionDB` |
+| `Integrated Security` | Windows Authentication | `true`, `SSPI` |
+| `User Id` | SQL Login username | `sa`, `dbuser` |
+| `Password` | SQL Login password | `YourPassword123` |
+| `TrustServerCertificate` | Bypass SSL validation | `true` (development only) |
+| `Encrypt` | Enable encryption | `false` (for local development) |
 
-### Technical Improvements
-- **Unit Testing**: Comprehensive test coverage
-- **CI/CD Pipeline**: Automated deployment workflows
-- **Performance Optimization**: Query optimization and caching
-- **Microservices Architecture**: Service decomposition for scalability
-- **Event-Driven Architecture**: Real-time notifications and updates
+## 🔧 Development Notes
+
+### MVVM Pattern Implementation
+The application follows the Model-View-ViewModel pattern:
+- **Models**: Entity classes representing database tables
+- **Views**: XAML files with UI layouts
+- **ViewModels**: Business logic and data binding (if implemented)
+
+### Data Binding Examples
+```csharp
+// Loading data to DataGrid
+private void LoadData()
+{
+    using (JustDbContext context = new JustDbContext())
+    {
+        var customers = context.Customers.ToList();
+        dgCustomers.ItemsSource = customers;
+    }
+}
+```
+
+### LINQ Query Patterns
+```csharp
+// Customer search functionality
+var results = context.Customers.Where(c =>
+    (!string.IsNullOrEmpty(c.Customername) && c.Customername.Contains(searchTerm)) ||
+    (!string.IsNullOrEmpty(c.Customernumber) && c.Customernumber.Contains(searchTerm))
+).ToList();
+```
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is part of an academic internship program and is intended for educational and industrial training purposes.
 
-## 👨‍💻 Developer
+## 👨‍💻 Developer Information
 
-**Lloyd Noronha**  
-  
-Email: lloyd.noronha11@gmail.com  
+**Student**: Lloyd Noronha  
+**SRN**: 01fe21bar006  
+**Institution**: Department of Automation & Robotics  
+**Project**: Industry Internship Project - 17EARW494  
+**Company**: Sprint Consys Pvt. Ltd.
+
+## 🤝 Contributing
+
+This is an internship project. For suggestions or improvements, please contact the development team or create an issue in the repository.
+
+## 📞 Support
+
+For technical support or questions:
+- Email: lloyd.noronha11@gmail.com
+- Phone: +91 8792568060
 
 ---
+
+*This Production & Management System represents a foundational step toward smarter, more connected industrial management, serving as a platform for future enhancements including analytics, cloud integration, and IoT connectivity.*
